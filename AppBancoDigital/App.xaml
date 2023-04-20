@@ -12,5 +12,25 @@
             <Setter Property="FontFamily" Value="OpenSans"/>
             <Setter Property="FontSize" Value="20"/>
         </Style>
+
+        <Style TargetType="Button" x:Key="Button1">
+            <Setter Property="TextColor" Value="#eeeeee"/>
+            <Setter Property="BackgroundColor" Value="#00cc73"/>
+            <Setter Property="FontFamily" Value="StellaNova"/>
+            <Setter Property="TextTransform" Value="None"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="WidthRequest" Value="200"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="OutlineButton1">
+            <Setter Property="TextColor" Value="#00cc73"/>
+            <Setter Property="BorderColor" Value="#00cc73"/>
+            <Setter Property="BorderWidth" Value="2"/>
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="FontFamily" Value="StellaNova"/>
+            <Setter Property="TextTransform" Value="None"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="WidthRequest" Value="200"/>
+        </Style>
     </Application.Resources>
 </Application>

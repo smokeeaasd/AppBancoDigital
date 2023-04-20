@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Specialized;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace AppBancoDigital.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Inicial : CarouselPage
+    public partial class Entrar : ContentPage
     {
-        public Inicial()
+        public Entrar()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);

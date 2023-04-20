@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppBancoDigital.Views.Entrar"
+             BackgroundColor="#eee">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center">
+            <Label Style="{StaticResource Titulo}"
+                   Text="Banco Digital"
+                   TextColor="#00cc73"
+                   HorizontalTextAlignment="Center"
+                   Margin="0, 0, 0, 10"/>
+
+            <Button Style="{StaticResource Button1}"
+                    TextColor="#eee"
+                    Text="Entrar"
+                    HorizontalOptions="Center"
+                    Margin="0, 10, 0, 20"/>
+
+            <Button Style="{StaticResource OutlineButton1}"
+                    Text="Registrar"
+                    HorizontalOptions="Center"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
