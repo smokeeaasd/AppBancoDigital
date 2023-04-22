@@ -3,34 +3,48 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppBancoDigital.App">
     <Application.Resources>
-        <Style TargetType="Label" x:Key="Titulo">
-            <Setter Property="FontFamily" Value="StellaNova"/>
-            <Setter Property="FontSize" Value="40"/>
-        </Style>
+        <ResourceDictionary>
+                        
+            <Style TargetType="Label" x:Key="Titulo">
+                <Setter Property="FontFamily" Value="StellaNova"/>
+                <Setter Property="FontSize" Value="40"/>
+            </Style>
 
-        <Style TargetType="Label" x:Key="SubTitulo">
-            <Setter Property="FontFamily" Value="OpenSans"/>
-            <Setter Property="FontSize" Value="20"/>
-        </Style>
+            <Style TargetType="Label" x:Key="SubTitulo">
+                <Setter Property="FontFamily" Value="OpenSans"/>
+                <Setter Property="FontSize" Value="20"/>
+            </Style>
 
-        <Style TargetType="Button" x:Key="Button1">
-            <Setter Property="TextColor" Value="#eeeeee"/>
-            <Setter Property="BackgroundColor" Value="#00cc73"/>
-            <Setter Property="FontFamily" Value="StellaNova"/>
-            <Setter Property="TextTransform" Value="None"/>
-            <Setter Property="FontSize" Value="18"/>
-            <Setter Property="WidthRequest" Value="200"/>
-        </Style>
+            <Style TargetType="Button" x:Key="Button1">
+                <Setter Property="TextColor" Value="#eeeeee"/>
+                <Setter Property="BackgroundColor" Value="#00cc73"/>
+                <Setter Property="FontFamily" Value="StellaNova"/>
+                <Setter Property="TextTransform" Value="None"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="WidthRequest" Value="200"/>
+            </Style>
 
-        <Style TargetType="Button" x:Key="OutlineButton1">
-            <Setter Property="TextColor" Value="#00cc73"/>
-            <Setter Property="BorderColor" Value="#00cc73"/>
-            <Setter Property="BorderWidth" Value="2"/>
-            <Setter Property="BackgroundColor" Value="Transparent"/>
-            <Setter Property="FontFamily" Value="StellaNova"/>
-            <Setter Property="TextTransform" Value="None"/>
-            <Setter Property="FontSize" Value="18"/>
-            <Setter Property="WidthRequest" Value="200"/>
-        </Style>
+            <Style TargetType="Button" x:Key="OutlineButton1">
+                <Setter Property="TextColor" Value="#00cc73"/>
+                <Setter Property="BorderColor" Value="#00cc73"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="FontFamily" Value="StellaNova"/>
+                <Setter Property="TextTransform" Value="None"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="WidthRequest" Value="200"/>
+            </Style>
+
+            <Style TargetType="Button" x:Key="TextButton1">
+                <Setter Property="TextColor" Value="#00cc73"/>
+                <Setter Property="BorderColor" Value="#00cc73"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="FontFamily" Value="OpenSans"/>
+                <Setter Property="TextTransform" Value="None"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="WidthRequest" Value="100"/>
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
