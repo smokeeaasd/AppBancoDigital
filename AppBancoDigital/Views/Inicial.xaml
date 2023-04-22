@@ -4,6 +4,5 @@
               x:Class="AppBancoDigital.Views.Inicial"
               xmlns:pages="clr-namespace:AppBancoDigital.Views"
               CurrentPage="{pages:Welcome}">
-    <pages:Welcome/>
-    <pages:Entrar/>
+    <pages:Welcome x:Name="page_welcome"/>
 </CarouselPage>

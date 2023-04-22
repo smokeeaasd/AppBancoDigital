@@ -4,16 +4,24 @@
              x:Class="AppBancoDigital.Views.Welcome"
              BackgroundColor="#00cc73">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Center">
-            <Label Style="{StaticResource Titulo}"
-                   Text="Banco Digital"
-                   TextColor="#eeeeee"
-                   HorizontalTextAlignment="Center"/>
+        <StackLayout>
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <Label Style="{StaticResource Titulo}"
+                           Text="Banco Digitall"
+                           TextColor="#eeeeee"
+                           HorizontalTextAlignment="Center"/>
 
-            <Label Style="{StaticResource SubTitulo}"
-                   Text="github.com/smokeeaasd"
-                   TextColor="#eeeeee"
-                   HorizontalTextAlignment="Center"/>
+                <Label Style="{StaticResource SubTitulo}"
+                           Text="github.com/smokeeaasd"
+                           TextColor="#eeeeee"
+                           HorizontalTextAlignment="Center"/>
+            </StackLayout>
+
+            <Button Style="{StaticResource TextButton1}"
+                        Text="Próximo"
+                        x:Name="btn_proximo"
+                    HorizontalOptions="End"
+                    TextColor="#eee"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

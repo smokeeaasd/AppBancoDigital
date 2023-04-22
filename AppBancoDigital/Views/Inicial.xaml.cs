@@ -17,6 +17,22 @@ namespace AppBancoDigital.Views
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+
+            Button btnProximo = page_welcome.FindByName<Button>("btn_proximo");
+
+            btnProximo.Clicked += BtnProximo_Clicked;
+        }
+
+        private void BtnProximo_Clicked(object sender, EventArgs e)
+        {
+            ContentPage currentPage = CurrentPage;
+            int nextPage = Children.IndexOf(currentPage) + 1;
+
+            Children.Add(new Entrar());
+
+            CurrentPage = Children[nextPage];
+
+            Children.Remove(page_welcome);
         }
     }
 }
