@@ -1,0 +1,1 @@
+"c:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe" /t:Install /t:PackageForAndroid /p:Configuration=Debug AppBancoDigital.Android/AppBancoDigital.Android.csproj
