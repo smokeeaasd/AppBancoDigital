@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppBancoDigital.App">
+             x:Class="AppBancoDigital.App"
+             xmlns:controls="clr-namespace:AppBancoDigital.Controls">
     <Application.Resources>
         <ResourceDictionary>
-                        
+
             <Style TargetType="Label" x:Key="Titulo">
                 <Setter Property="FontFamily" Value="StellaNova"/>
                 <Setter Property="FontSize" Value="40"/>
@@ -13,6 +14,11 @@
             <Style TargetType="Label" x:Key="SubTitulo">
                 <Setter Property="FontFamily" Value="OpenSans"/>
                 <Setter Property="FontSize" Value="20"/>
+            </Style>
+
+            <Style TargetType="Label" x:Key="FormLabel">
+                <Setter Property="FontFamily" Value="StellaNova"/>
+                <Setter Property="FontSize" Value="18"/>
             </Style>
 
             <Style TargetType="Button" x:Key="Button1">
@@ -44,6 +50,11 @@
                 <Setter Property="TextTransform" Value="None"/>
                 <Setter Property="FontSize" Value="18"/>
                 <Setter Property="WidthRequest" Value="100"/>
+            </Style>
+
+            <Style TargetType="Entry" x:Key="Entry1">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontFamily" Value="StellaNova"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

@@ -17,5 +17,10 @@ namespace AppBancoDigital.Views
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
         }
+
+        private void RegistrarClicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Registrar());
+        }
     }
 }

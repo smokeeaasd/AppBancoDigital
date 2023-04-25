@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppBancoDigital.Views.Registrar"
+             xmlns:controls="clr-namespace:AppBancoDigital.Controls"
+             BackgroundColor="#eee">
+    <ContentPage.Content>
+        <StackLayout >
+            <Label FontFamily="StellaNova"
+                   FontSize="30"
+                   Text="Criar nova conta"
+                   TextColor="#222"
+                   Margin="25, 75, 25, 0"/>
+
+            <Label Style="{StaticResource FormLabel}"
+                   Text="Seu nome completo"
+                   TextColor="#222"
+                   Margin="25, 50, 25, 0"/>
+
+            <Entry Style="{StaticResource Entry1}"
+                   Margin="25, 0, 10, 0"
+                   PlaceholderColor="#999"
+                   Placeholder="Ex. Deftoners Scrobblers da Silva"
+                   x:Name="txt_nome"/>
+
+            <Label Style="{StaticResource FormLabel}"
+                   Text="CPF"
+                   TextColor="#222"
+                   Margin="25, 20, 25, 0"/>
+
+            <controls:MaskedEntry Style="{StaticResource Entry1}"
+                   Margin="25, 0, 25, 0"
+                   PlaceholderColor="#999"
+                   Keyboard="Numeric"
+                   Placeholder="111.111.111-11"
+                   Mask="XXX.XXX.XXX-XX"
+                   x:Name="txt_cpf"/>
+
+            <Label Style="{StaticResource FormLabel}"
+                   Text="Data de Nascimento"
+                   TextColor="#222"
+                   Margin="25, 20, 25, 0"/>
+
+            <controls:MaskedEntry Style="{StaticResource Entry1}"
+                   Margin="25, 0, 25, 0"
+                   PlaceholderColor="#999"
+                   Keyboard="Numeric"
+                   Mask="XX/XX/XXXX"
+                   x:Name="txt_data_nasc"/>
+
+            <Label Style="{StaticResource FormLabel}"
+                   Text="Senha"
+                   TextColor="#222"
+                   Margin="25, 20, 25, 0"/>
+
+            <Entry Style="{StaticResource Entry1}"
+                   Margin="25, 0, 25, 0"
+                   PlaceholderColor="#999"
+                   IsPassword="True"
+                   x:Name="txt_senha"/>
+
+            <Label Style="{StaticResource FormLabel}"
+                   Text="Confirme a Senha"
+                   TextColor="#222"
+                   Margin="25, 20, 25, 0"/>
+
+            <Entry Style="{StaticResource Entry1}"
+                   Margin="25, 0, 25, 0"
+                   PlaceholderColor="#999"
+                   IsPassword="True"
+                   x:Name="txt_confirmar_senha"/>
+
+            <Button Style="{StaticResource Button1}"
+                    HorizontalOptions="Center"
+                    Text="Criar conta"
+                    Margin="0, 35, 0, 0"
+                    Clicked="CriarContaClicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

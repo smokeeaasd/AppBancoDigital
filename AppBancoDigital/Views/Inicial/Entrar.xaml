@@ -19,7 +19,8 @@
 
             <Button Style="{StaticResource OutlineButton1}"
                     Text="Registrar"
-                    HorizontalOptions="Center"/>
+                    HorizontalOptions="Center"
+                    Clicked="RegistrarClicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
