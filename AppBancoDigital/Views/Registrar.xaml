@@ -18,7 +18,7 @@
                    Margin="25, 50, 25, 0"/>
 
             <Entry Style="{StaticResource Entry1}"
-                   Margin="25, 0, 10, 0"
+                   Margin="25, 0, 25, 0"
                    PlaceholderColor="#999"
                    Placeholder="Ex. Deftoners Scrobblers da Silva"
                    x:Name="txt_nome"/>
