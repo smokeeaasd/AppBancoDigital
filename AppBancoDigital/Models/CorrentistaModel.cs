@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AppBancoDigital.Models
 {
-    public class CorrentistaModel
+    public class Correntista
     {
         public int Id { get; set; }
         public string Nome { get; set; }

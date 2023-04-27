@@ -9,7 +9,7 @@ namespace AppBancoDigital.Services
 {
     public class DataServiceCorrentista : DataService
     {
-        public static async Task<object> InsertCorrentista(CorrentistaModel correntistaModel)
+        public static async Task<object> InsertCorrentista(Correntista correntistaModel)
         {
             string json = JsonConvert.SerializeObject(correntistaModel);
 
@@ -17,10 +17,10 @@ namespace AppBancoDigital.Services
 
             var obj = JsonConvert.DeserializeObject(response);
 
-            CorrentistaModel correntista = obj as CorrentistaModel;
+            Correntista correntista = obj as Correntista;
 
             if (correntista != null)
-                return obj as CorrentistaModel;
+                return obj as Correntista;
             else
                 throw new Exception("Algo está errado");
         }
