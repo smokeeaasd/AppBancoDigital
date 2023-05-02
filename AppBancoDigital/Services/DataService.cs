@@ -4,12 +4,13 @@ using System.Text;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+using System.Net;
 
 namespace AppBancoDigital.Services
 {
     public class DataService
     {
-        public static readonly string servidor = "10.2.2.2:8000";
+        public static readonly string servidor = "http://10.0.2.2:8000";
 
         protected static async Task<string> GetDataFromService(string rota)
         {
@@ -20,14 +21,16 @@ namespace AppBancoDigital.Services
             var current = Connectivity.NetworkAccess;
 
             if (current != NetworkAccess.Internet)
-                throw new Exception("Por favor, conecte-se à internet.");
+                throw new Exception("Por favor, conecte-se à Internet.");
 
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage response = await client.GetAsync(uri);
 
                 if (response.IsSuccessStatusCode)
+                {
                     json_response = response.Content.ReadAsStringAsync().Result;
+                }
                 else
                     throw new Exception(DecodeServerError(response.StatusCode));
             }
@@ -41,14 +44,15 @@ namespace AppBancoDigital.Services
 
             string uri = servidor + rota;
 
-            var current = Connectivity.NetworkAccess;
-
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
-                throw new Exception("Por favor, conecte-se à internet.");
+                throw new Exception("Por favor, conecte-se à Internet.");
 
             using (HttpClient client = new HttpClient())
             {
-                HttpResponseMessage response = await client.GetAsync(uri);
+                HttpResponseMessage response = await client.PostAsync(
+                    uri,
+                    new StringContent(json_object, Encoding.UTF8, "application/json")
+                );
 
                 if (response.IsSuccessStatusCode)
                     json_response = response.Content.ReadAsStringAsync().Result;
@@ -59,29 +63,29 @@ namespace AppBancoDigital.Services
             return json_response;
         }
 
-        private static string DecodeServerError(System.Net.HttpStatusCode statusCode)
+        private static string DecodeServerError(HttpStatusCode status_code)
         {
             string msg_erro;
 
-            switch (statusCode)
+            switch (status_code)
             {
-                case System.Net.HttpStatusCode.BadRequest:
+                case HttpStatusCode.BadRequest:
                     msg_erro = "A requisição não pode ser atendida agora. Tente mais tarde.";
                     break;
 
-                case System.Net.HttpStatusCode.NotFound:
+                case HttpStatusCode.NotFound:
                     msg_erro = "Recurso indisponível no momento. Tente mais tarde.";
                     break;
 
-                case System.Net.HttpStatusCode.InternalServerError:
+                case HttpStatusCode.InternalServerError:
                     msg_erro = "Nosso banco de dados está indisponível. Tente mais tarde.";
                     break;
 
-                case System.Net.HttpStatusCode.RequestTimeout:
+                case HttpStatusCode.RequestTimeout:
                     msg_erro = "O servidor está demorando muito para responder. Tente novamente.";
                     break;
 
-                case System.Net.HttpStatusCode.Forbidden:
+                case HttpStatusCode.Forbidden:
                     msg_erro = "Recurso temporariamente indisponível. Tente mais tarde.";
                     break;
 

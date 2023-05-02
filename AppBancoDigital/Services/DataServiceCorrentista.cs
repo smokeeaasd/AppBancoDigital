@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using AppBancoDigital.Exceptions;
 
 namespace AppBancoDigital.Services
 {
@@ -13,16 +14,13 @@ namespace AppBancoDigital.Services
         {
             string json = JsonConvert.SerializeObject(correntistaModel);
 
+            Console.WriteLine(json);
+            
             string response = await PostDataToService(json, "/api/correntista/new");
 
-            var obj = JsonConvert.DeserializeObject(response);
+            var obj = JsonConvert.DeserializeObject<Correntista>(response);
 
-            Correntista correntista = obj as Correntista;
-
-            if (correntista != null)
-                return obj as Correntista;
-            else
-                throw new Exception("Algo está errado");
+            return obj;
         }
     }
 }
