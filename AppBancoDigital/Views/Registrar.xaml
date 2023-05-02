@@ -41,12 +41,11 @@
                    TextColor="#222"
                    Margin="25, 20, 25, 0"/>
 
-            <controls:MaskedEntry Style="{StaticResource Entry1}"
+            <DatePicker
                    Margin="25, 0, 25, 0"
-                   PlaceholderColor="#999"
-                   Keyboard="Numeric"
-                   Mask="XX/XX/XXXX"
-                   x:Name="txt_data_nasc"/>
+                   x:Name="dtpck_data_nasc"
+                   FontFamily="StellaNova"
+                   FontSize="16"/>
 
             <Label Style="{StaticResource FormLabel}"
                    Text="Senha"
