@@ -10,22 +10,17 @@ using Xamarin.Forms.Xaml;
 namespace AppBancoDigital.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Entrar : ContentPage
+    public partial class Login : ContentPage
     {
-        public Entrar()
+        public Login()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
         }
 
-        private void RegistrarClicked(object sender, EventArgs e)
+        private void LogarClicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Registrar());
-        }
 
-        private void LoginClicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new Login());
         }
     }
 }

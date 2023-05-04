@@ -1,4 +1,5 @@
 ﻿using AppBancoDigital.Controls;
+using AppBancoDigital.Exceptions;
 using AppBancoDigital.Models;
 using AppBancoDigital.Services;
 using System;
@@ -93,13 +94,23 @@ namespace AppBancoDigital.Views
             try
             {
                 Correntista c = await DataServiceCorrentista.InsertCorrentista(correntista) as Correntista;
-
-                await DisplayAlert(c.data_nasc, c.data_nasc, "ok");
+            }
+            catch (AccountException ex)
+            {
+                switch (ex.Code)
+                {
+                    case AccountExceptionCode.AccountExists:
+                        await DisplayAlert("Problema ao criar conta.", "A conta já existe", "OK");
+                        return;
+                }
             }
             catch (Exception ex)
             {
                 await DisplayAlert(ex.Message, ex.StackTrace, "OK");
+                return;
             }
+
+            await DisplayAlert("Conta criada!", $"Seja bem-vindo(a), {txt_nome.Text}", "OK");
         }
 
         private string ParseDate(DateTime date)
