@@ -27,7 +27,7 @@
                     <Label Text="Conta Corrente" FontFamily="StellaNova" TextColor="#eee"
                        FontSize="20"/>
 
-                    <Label Text="R$ 5.000,00" FontFamily="StellaNova" TextColor="#eee" FontSize="30"/>
+                    <Label Text="Binding Saldo" FontFamily="StellaNova" TextColor="#eee" FontSize="30"/>
                 </StackLayout>
 
             </Frame>
