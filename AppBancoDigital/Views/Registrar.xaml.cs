@@ -85,8 +85,8 @@ namespace AppBancoDigital.Views
 
             Correntista correntista = new Correntista()
             {
-                CPF = FormatCPF(txt_cpf.Text),
-                data_nasc = ParseDate(dtpck_data_nasc.Date),
+                CPF = FormUtils.FormatCPF(txt_cpf.Text),
+                data_nasc = FormUtils.ParseDate(dtpck_data_nasc.Date),
                 Nome = txt_nome.Text,
                 Senha = txt_senha.Text
             };
@@ -111,20 +111,6 @@ namespace AppBancoDigital.Views
             }
 
             await DisplayAlert("Conta criada!", $"Seja bem-vindo(a), {txt_nome.Text}", "OK");
-        }
-
-        private string ParseDate(DateTime date)
-        {
-            string[] dt_arr = date.ToShortDateString().Split('/');
-
-            return string.Join("-", dt_arr.Reverse());
-        }
-
-        private string FormatCPF(string cpf)
-        {
-            string[] _cpf = cpf.Split(new char[] { '.', '-' });
-
-            return string.Join("", _cpf);
         }
 
         private bool CheckForm()

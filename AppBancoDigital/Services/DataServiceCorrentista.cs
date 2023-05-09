@@ -26,7 +26,7 @@ namespace AppBancoDigital.Services
             return obj;
         }
 
-        public static async Task<object> GetCorrentistaById(Correntista correntistaModel)
+        public static async Task<object> GetCorrentistaByCpfAndSenha(Correntista correntistaModel)
         {
             string json = JsonConvert.SerializeObject(correntistaModel);
 
@@ -37,12 +37,15 @@ namespace AppBancoDigital.Services
 
             string response = await GetDataFromService($"/api/correntista/connect?cpf={cpf}&senha={senha}");
 
-            var obj = JsonConvert.DeserializeObject<Correntista>(response);
+            object obj = JsonConvert.DeserializeObject(response);
 
-            if (obj == null)
-                throw new AccountException("Não foi encontrada conta com os dados informados", AccountExceptionCode.IncorrectCredentials);
-
-            return obj;
+            if (obj.GetType() == typeof(Correntista))
+            {
+                return (Correntista)obj;
+            } else
+            {
+                return null;
+            }
         }
     }
 }
