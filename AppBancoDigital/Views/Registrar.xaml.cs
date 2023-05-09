@@ -93,7 +93,7 @@ namespace AppBancoDigital.Views
 
             try
             {
-                Correntista c = await DataServiceCorrentista.InsertCorrentista(correntista) as Correntista;
+                Correntista c = await DataServiceCorrentista.InsertCorrentista(correntista);
             }
             catch (AccountException ex)
             {
@@ -103,11 +103,6 @@ namespace AppBancoDigital.Views
                         await DisplayAlert("Problema ao criar conta.", "A conta já existe", "OK");
                         return;
                 }
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert(ex.Message, ex.StackTrace, "OK");
-                return;
             }
 
             await DisplayAlert("Conta criada!", $"Seja bem-vindo(a), {txt_nome.Text}", "OK");

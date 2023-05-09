@@ -6,7 +6,13 @@ namespace AppBancoDigital.Models
 {
     public class Result
     {
-        public int ErrNumber { get; set; }
-        public string Message { get; set; }
+        public int Type { get; set; }
+        public object Data { get; set; }
+
+        public Result(int type, object data)
+        {
+            Type = type;
+            Data = data;
+        }
     }
 }

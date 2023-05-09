@@ -1,4 +1,5 @@
-﻿using AppBancoDigital.Models;
+﻿using AppBancoDigital.Exceptions;
+using AppBancoDigital.Models;
 using AppBancoDigital.Services;
 using System;
 using System.Collections.Generic;
@@ -25,19 +26,34 @@ namespace AppBancoDigital.Views
             string cpf = FormUtils.FormatCPF(txt_cpf.Text);
             string senha = txt_senha.Text;
 
-            object res = await DataServiceCorrentista.GetCorrentistaByCpfAndSenha(new Correntista
+            try
             {
-                CPF = cpf,
-                Senha = senha
-            });
+                Correntista correntista = await DataServiceCorrentista.GetCorrentistaByCpfAndSenha(new Correntista
+                {
+                    CPF = cpf,
+                    Senha = senha
+                }, this);
 
-            if (res != null)
-            {
-                Correntista c = res as Correntista;
+                App.Current.Properties.Add("id_account", correntista.Id);
 
-                await DisplayAlert("Oi", c.data_nasc, "ok");
+                Navigation.PushAsync(new Views.Home()
+                {
+                    BindingContext = await DataServiceCorrentista.GetCorrentistaByID(correntista.Id)
+                });
             }
-
+            catch (AccountException ex)
+            {
+                switch (ex.Code)
+                {
+                    case AccountExceptionCode.IncorrectCredentials:
+                        lbl_incorrect.IsVisible = true;
+                    break;
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Ops", ex.StackTrace, "OK");
+            }
         }
     }
 }

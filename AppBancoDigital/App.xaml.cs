@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppBancoDigital.Services;
+using System;
 using System.Globalization;
 using System.Threading;
 using Xamarin.Forms;
