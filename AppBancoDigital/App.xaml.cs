@@ -13,6 +13,7 @@ namespace AppBancoDigital
         public App()
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
+
             InitializeComponent();
 
             MainPage = new NavigationPage(new Views.Inicial());

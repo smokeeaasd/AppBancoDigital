@@ -34,8 +34,6 @@ namespace AppBancoDigital.Views
                     Senha = senha
                 }, this);
 
-                App.Current.Properties.Add("id_account", correntista.Id);
-
                 Navigation.PushAsync(new Views.Home()
                 {
                     BindingContext = await DataServiceCorrentista.GetCorrentistaByID(correntista.Id)
@@ -52,7 +50,7 @@ namespace AppBancoDigital.Views
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Ops", ex.StackTrace, "OK");
+                await DisplayAlert(ex.Message, ex.StackTrace, "OK");
             }
         }
     }

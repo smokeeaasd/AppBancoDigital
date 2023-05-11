@@ -13,24 +13,12 @@
                 </Label.FormattedText>
             </Label>
 
-            <Label Text="Carteira"
+            <Label Text="Suas Contas"
                    FontSize="25"
                    FontFamily="StellaNova"
                    Margin="30, 20, 0, 0" TextColor="#111"/>
-
-            <Frame Margin="30, 30, 30, 0"
-                   HeightRequest="100"
-                   CornerRadius="20"
-                   BackgroundColor="#00cc73">
-
-                <StackLayout>
-                    <Label Text="Conta Corrente" FontFamily="StellaNova" TextColor="#eee"
-                       FontSize="20"/>
-
-                    <Label Text="Binding Saldo" FontFamily="StellaNova" TextColor="#eee" FontSize="30"/>
-                </StackLayout>
-
-            </Frame>
+            
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
