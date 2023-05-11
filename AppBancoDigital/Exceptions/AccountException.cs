@@ -8,19 +8,19 @@ namespace AppBancoDigital.Exceptions
     public class AccountException : Exception
     {
         public AccountException() { }
-        public AccountExceptionCode Code { get; set; }
+        public APIGetDataExceptionType Code { get; set; }
 
-        public AccountException(string message, AccountExceptionCode code)
+        public AccountException(string message, APIGetDataExceptionType code)
             : base(String.Format("Erro de conta: {0}", message))
         {
             Code = code;
         }
     }
 
-    public enum AccountExceptionCode
+    public enum APIGetDataExceptionType
     {
-        AccountExists,
-        AccountNotExists,
+        DataExists,
+        DataNotExists,
         IncorrectCredentials
     }
 }

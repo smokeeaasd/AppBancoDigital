@@ -34,7 +34,7 @@ namespace AppBancoDigital.Views
                     Senha = senha
                 }, this);
 
-                Navigation.PushAsync(new Views.Home()
+                await Navigation.PushAsync(new Views.Home()
                 {
                     BindingContext = await DataServiceCorrentista.GetCorrentistaByID(correntista.Id)
                 });
@@ -43,7 +43,7 @@ namespace AppBancoDigital.Views
             {
                 switch (ex.Code)
                 {
-                    case AccountExceptionCode.IncorrectCredentials:
+                    case APIGetDataExceptionType.DataExists:
                         lbl_incorrect.IsVisible = true;
                     break;
                 }

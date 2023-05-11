@@ -26,7 +26,7 @@ namespace AppBancoDigital.Services
                 case 1:
                     return JsonConvert.DeserializeObject<Correntista>(res.Data.ToString());
                 case 2:
-                    throw new AccountException("Já existe uma conta com o CPF informado.", AccountExceptionCode.AccountExists);
+                    throw new AccountException("Já existe uma conta com o CPF informado.", APIGetDataExceptionType.DataExists);
                 default:
                     throw new Exception();
             }
@@ -35,8 +35,6 @@ namespace AppBancoDigital.Services
         public static async Task<Correntista> GetCorrentistaByCpfAndSenha(Correntista correntistaModel, Page page)
         {
             string json = JsonConvert.SerializeObject(correntistaModel);
-
-            Console.WriteLine(json);
 
             string cpf = correntistaModel.CPF;
             string senha = correntistaModel.Senha;
@@ -50,7 +48,7 @@ namespace AppBancoDigital.Services
                 case 1:
                     return JsonConvert.DeserializeObject<Correntista>(res.Data.ToString());
                 case 2:
-                    throw new AccountException("Credenciais incorretas", AccountExceptionCode.IncorrectCredentials);
+                    throw new AccountException("Credenciais incorretas", APIGetDataExceptionType.IncorrectCredentials);
                 default:
                     throw new Exception();
             }
@@ -67,7 +65,7 @@ namespace AppBancoDigital.Services
                 case 1:
                     return JsonConvert.DeserializeObject<Correntista>(res.Data.ToString());
                 case 2:
-                    throw new AccountException("Conta não existe", AccountExceptionCode.AccountNotExists);
+                    throw new AccountException("Conta não existe", APIGetDataExceptionType.DataNotExists);
                 default:
                     throw new Exception();
             }

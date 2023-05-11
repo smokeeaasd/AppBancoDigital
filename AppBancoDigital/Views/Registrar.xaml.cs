@@ -99,7 +99,7 @@ namespace AppBancoDigital.Views
             {
                 switch (ex.Code)
                 {
-                    case AccountExceptionCode.AccountExists:
+                    case APIGetDataExceptionType.DataExists:
                         await DisplayAlert("Problema ao criar conta.", "A conta já existe", "OK");
                         return;
                 }
