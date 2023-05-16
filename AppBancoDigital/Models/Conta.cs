@@ -12,6 +12,7 @@ namespace AppBancoDigital.Models
 
         public int Senha { get; set; }
 
+        public double Saldo { get; set; }
         public int IdCorrentista { get; set; }
     }
 }

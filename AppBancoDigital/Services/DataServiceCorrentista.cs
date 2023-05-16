@@ -36,10 +36,7 @@ namespace AppBancoDigital.Services
         {
             string json = JsonConvert.SerializeObject(correntistaModel);
 
-            string cpf = correntistaModel.CPF;
-            string senha = correntistaModel.Senha;
-
-            string response = await GetDataFromService($"/api/correntista/connect?cpf={cpf}&senha={senha}");
+            string response = await PostDataToService(json, "/api/correntista/connect");
 
             Result res = JsonConvert.DeserializeObject<Result>(response);
 

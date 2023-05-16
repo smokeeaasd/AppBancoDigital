@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppBancoDigital.Views.Home">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout x:Name="stack_principal">
             <Label Margin="30, 30, 0, 0">
                 <Label.FormattedText>
                     <FormattedString>
@@ -17,7 +17,6 @@
                    FontSize="25"
                    FontFamily="StellaNova"
                    Margin="30, 20, 0, 0" TextColor="#111"/>
-            
             
         </StackLayout>
     </ContentPage.Content>
