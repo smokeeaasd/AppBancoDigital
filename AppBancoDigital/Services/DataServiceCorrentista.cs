@@ -26,7 +26,7 @@ namespace AppBancoDigital.Services
                 case 1:
                     return JsonConvert.DeserializeObject<Correntista>(res.Data.ToString());
                 case 2:
-                    throw new AccountException("Já existe uma conta com o CPF informado.", APIGetDataExceptionType.DataExists);
+                    throw new APIException("Já existe uma conta com o CPF informado.", APIExceptionType.DataExists);
                 default:
                     throw new Exception();
             }
@@ -45,7 +45,7 @@ namespace AppBancoDigital.Services
                 case 1:
                     return JsonConvert.DeserializeObject<Correntista>(res.Data.ToString());
                 case 2:
-                    throw new AccountException("Credenciais incorretas", APIGetDataExceptionType.IncorrectCredentials);
+                    return null;
                 default:
                     throw new Exception();
             }
@@ -62,7 +62,7 @@ namespace AppBancoDigital.Services
                 case 1:
                     return JsonConvert.DeserializeObject<Correntista>(res.Data.ToString());
                 case 2:
-                    throw new AccountException("Conta não existe", APIGetDataExceptionType.DataNotExists);
+                    return null;
                 default:
                     throw new Exception();
             }

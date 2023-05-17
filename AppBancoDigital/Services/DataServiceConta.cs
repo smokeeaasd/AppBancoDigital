@@ -21,7 +21,7 @@ namespace AppBancoDigital.Services
                 case 1:
                     return JsonConvert.DeserializeObject<List<Conta>>(res.Data.ToString());
                 case 2:
-                    throw new AccountException("Não tem conta :o", APIGetDataExceptionType.DataNotExists);
+                    return null;
                 default:
                     throw new Exception();
             }
