@@ -38,11 +38,13 @@ namespace AppBancoDigital.Views
                     lbl_incorrect.IsVisible = true;
                     return;
                 }
-
+                
                 await Navigation.PushAsync(new Views.Home()
                 {
                     BindingContext = await DataServiceCorrentista.GetCorrentistaByID(correntista.Id)
                 });
+
+                Navigation.RemovePage(this);
             }
 
             catch (Exception ex)

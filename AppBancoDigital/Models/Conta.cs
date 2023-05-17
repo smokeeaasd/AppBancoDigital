@@ -10,9 +10,9 @@ namespace AppBancoDigital.Models
         public int Numero { get; set; }
         public string Tipo { get; set; }
 
-        public int Senha { get; set; }
+        public string Senha { get; set; }
 
         public double Saldo { get; set; }
-        public int IdCorrentista { get; set; }
+        public int Id_Correntista { get; set; }
     }
 }

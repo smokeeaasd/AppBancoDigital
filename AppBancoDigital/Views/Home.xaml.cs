@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using AppBancoDigital.Services;
 using Xamarin.CommunityToolkit.Extensions;
+using Xamarin.CommunityToolkit.UI.Views;
 
 namespace AppBancoDigital.Views
 {
@@ -71,9 +72,30 @@ namespace AppBancoDigital.Views
             return frm;
         }
 
-        private void CriarContaClicked(object sender, EventArgs e)
+        private async void CriarContaClicked(object sender, EventArgs e)
         {
-            Navigation.ShowPopupAsync(new CriarConta());
+            object res = await Navigation.ShowPopupAsync(new CriarConta()
+            {
+                BindingContext = await DataServiceConta.GetContasByCorrentista(correntista.Id)
+            });
+
+            try
+            {
+                Conta c = res as Conta;
+
+                c.Id_Correntista = correntista.Id;
+                c.Saldo = 0;
+
+                await DataServiceConta.InsertConta(c);
+
+                App.Current.MainPage = new Home()
+                {
+                    BindingContext = await DataServiceCorrentista.GetCorrentistaByID(correntista.Id)
+                };
+            } catch (Exception ex)
+            {
+                await DisplayAlert(ex.Message, ex.StackTrace, "ok");
+            }
         }
 
         private void LoadAccountCards(List<Conta> contas)

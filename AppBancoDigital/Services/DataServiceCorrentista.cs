@@ -15,8 +15,6 @@ namespace AppBancoDigital.Services
         {
             string json = JsonConvert.SerializeObject(correntistaModel);
 
-            Console.WriteLine(json);
-            
             string response = await PostDataToService(json, "/api/correntista/new");
 
             Result res = JsonConvert.DeserializeObject<Result>(response);

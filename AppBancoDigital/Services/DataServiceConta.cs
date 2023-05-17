@@ -26,5 +26,22 @@ namespace AppBancoDigital.Services
                     throw new Exception();
             }
         }
+
+        public static async Task<Conta> InsertConta(Conta contaModel)
+        {
+            string json = JsonConvert.SerializeObject(contaModel);
+
+            string response = await PostDataToService(json, "/api/conta/new");
+
+            Result res = JsonConvert.DeserializeObject<Result>(response);
+
+            switch (res.Type)
+            {
+                case 1:
+                    return JsonConvert.DeserializeObject<Conta>(res.Data.ToString());
+                default:
+                    throw new Exception();
+            }
+        }
     }
 }
