@@ -5,19 +5,18 @@ using System.Text;
 namespace AppBancoDigital.Exceptions
 {
     [Serializable]
-    public class AccountException : Exception
+    public class APIException : Exception
     {
-        public AccountException() { }
-        public APIGetDataExceptionType Code { get; set; }
+        public APIExceptionType Code { get; set; }
 
-        public AccountException(string message, APIGetDataExceptionType code)
+        public APIException(string message, APIExceptionType code)
             : base(String.Format("Erro de conta: {0}", message))
         {
             Code = code;
         }
     }
 
-    public enum APIGetDataExceptionType
+    public enum APIExceptionType
     {
         DataExists,
         DataNotExists,
