@@ -34,20 +34,17 @@ namespace AppBancoDigital.Views
                     Senha = senha
                 }, this);
 
+                if (correntista == null) {
+                    lbl_incorrect.IsVisible = true;
+                    return;
+                }
+
                 await Navigation.PushAsync(new Views.Home()
                 {
                     BindingContext = await DataServiceCorrentista.GetCorrentistaByID(correntista.Id)
                 });
             }
-            catch (AccountException ex)
-            {
-                switch (ex.Code)
-                {
-                    case APIGetDataExceptionType.DataExists:
-                        lbl_incorrect.IsVisible = true;
-                    break;
-                }
-            }
+
             catch (Exception ex)
             {
                 await DisplayAlert(ex.Message, ex.StackTrace, "OK");

@@ -95,17 +95,19 @@ namespace AppBancoDigital.Views
             {
                 Correntista c = await DataServiceCorrentista.InsertCorrentista(correntista);
             }
-            catch (AccountException ex)
+            catch (APIException ex)
             {
                 switch (ex.Code)
                 {
-                    case APIGetDataExceptionType.DataExists:
+                    case APIExceptionType.DataExists:
                         await DisplayAlert("Problema ao criar conta.", "A conta já existe", "OK");
                         return;
                 }
             }
 
             await DisplayAlert("Conta criada!", $"Seja bem-vindo(a), {txt_nome.Text}", "OK");
+
+            await Navigation.PopAsync();
         }
 
         private bool CheckForm()

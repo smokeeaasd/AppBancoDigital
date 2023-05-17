@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using AppBancoDigital.Services;
+using Xamarin.CommunityToolkit.Extensions;
 
 namespace AppBancoDigital.Views
 {
@@ -15,6 +16,13 @@ namespace AppBancoDigital.Views
     public partial class Home : ContentPage
     {
         private Correntista correntista;
+        public Home()
+        {
+            InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
+            img_no_account.Source = ImageSource.FromResource("AppBancoDigital.Assets.Images.money.png");
+        }
+
         private Frame MakeAccountCard(Conta c)
         {
             Grid grid = new Grid();
@@ -44,7 +52,8 @@ namespace AppBancoDigital.Views
                 WidthRequest = 275,
                 HeightRequest = 125,
                 CornerRadius = 10,
-                Content = new StackLayout() {
+                Content = new StackLayout()
+                {
                     Children =
                     {
                         grid,
@@ -61,13 +70,13 @@ namespace AppBancoDigital.Views
 
             return frm;
         }
-        public Home()
+
+        private void CriarContaClicked(object sender, EventArgs e)
         {
-            InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
+            Navigation.ShowPopupAsync(new CriarConta());
         }
 
-        private async void LoadAccountCards(List<Conta> contas)
+        private void LoadAccountCards(List<Conta> contas)
         {
             foreach (Conta conta in contas)
             {

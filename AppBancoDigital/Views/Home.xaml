@@ -17,7 +17,20 @@
                    FontSize="25"
                    FontFamily="StellaNova"
                    Margin="30, 20, 0, 0" TextColor="#111"/>
-            
+
+            <StackLayout x:Name="stack_no_account"
+                         HorizontalOptions="Center" Margin="0, 50">
+                <Image x:Name="img_no_account"/>
+
+                <Label Text="Nenhuma conta..."
+                       FontSize="25"
+                       FontFamily="StellaNova"
+                       Margin="30, 0"
+                       TextColor="#111"/>
+            </StackLayout>
+
+            <Button Style="{StaticResource Button1}" HorizontalOptions="Center" Text="Criar Conta" x:Name="btn_criarConta" Clicked="CriarContaClicked"/>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
