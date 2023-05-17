@@ -4,6 +4,8 @@ using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
+using AndroidX.AppCompat;
+using AndroidX.AppCompat.App;
 
 namespace AppBancoDigital.Droid
 {
@@ -13,6 +15,7 @@ namespace AppBancoDigital.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightNo;
 
             Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#222222"));
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
