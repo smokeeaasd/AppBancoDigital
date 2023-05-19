@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Xamarin.CommunityToolkit.UI.Views;
 using AppBancoDigital.Models;
 using AppBancoDigital.Services;
 
 namespace AppBancoDigital.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CriarConta : Popup
+    public partial class CriarConta : ContentPage
     {
         List<Conta> contas;
+		Correntista correntista;
 
         public CriarConta()
         {
@@ -26,7 +26,7 @@ namespace AppBancoDigital.Views
         private void btn_poupanca_Clicked(object sender, EventArgs e)
         {
             btn_corrente.BackgroundColor = Color.FromHex("#6b6b6b");
-            btn_poupanca.BackgroundColor = Color.FromHex("#00cc73");
+            btn_poupanca.BackgroundColor = Color.FromHex("#007a45");
 
             selecionada = "POUPANCA";
         }
@@ -34,38 +34,30 @@ namespace AppBancoDigital.Views
         private void btn_corrente_Clicked(object sender, EventArgs e)
         {
             btn_poupanca.BackgroundColor = Color.FromHex("#6b6b6b");
-            btn_corrente.BackgroundColor = Color.FromHex("#00cc73");
+            btn_corrente.BackgroundColor = Color.FromHex("#007a45");
 
             selecionada = "CORRENTE";
         }
 
-        protected override void OnBindingContextChanged()
-        {
-            base.OnBindingContextChanged();
+		protected override async void OnAppearing()
+		{
+			base.OnAppearing();
 
-            contas = BindingContext as List<Conta>;
+			correntista = BindingContext as Correntista;
+			contas = await DataServiceConta.GetContasByCorrentista(correntista.Id);
 
-            bool temPoupanca;
-            bool temCorrente;
-            if (contas == null)
-            {
-                temPoupanca = false;
-                temCorrente = false;
-            }
-            else
-            {
-                temPoupanca = contas.Exists((c) => c.Tipo == "POUPANCA");
-                temCorrente = contas.Exists((c) => c.Tipo == "CORRENTE");
-            }
+			if (contas != null)
+			{
+				btn_corrente.IsVisible = !contas.Exists((c) => c.Tipo == "CORRENTE");
+				btn_poupanca.IsVisible = !contas.Exists((c) => c.Tipo == "POUPANCA");
+			} else {
+				btn_corrente.IsVisible = true;
+				btn_poupanca.IsVisible = true;
+			}
 
-            if (temCorrente)
-                btn_corrente.IsVisible = false;
+		}
 
-            if (temPoupanca)
-                btn_poupanca.IsVisible = false;
-        }
-
-        private void btn_criar_conta_Clicked(object sender, EventArgs e)
+        private async void btn_criar_conta_Clicked(object sender, EventArgs e)
         {
             try
             {
@@ -82,15 +74,18 @@ namespace AppBancoDigital.Views
 
                 Conta c = new Conta()
                 {
+					Id_Correntista = correntista.Id,
                     Tipo = selecionada,
+					Saldo = 0,
                     Senha = txt_senha.Text
                 };
 
-                Dismiss(c);
+				await DataServiceConta.InsertConta(c);
+
+				await Navigation.PopModalAsync();
             } catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine(ex.StackTrace);
+                await DisplayAlert(ex.Message, ex.StackTrace, "OK");
             }
         }
     }

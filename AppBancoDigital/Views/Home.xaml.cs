@@ -95,47 +95,43 @@ namespace AppBancoDigital.Views
 
 		private async void CriarContaClicked(object sender, EventArgs e)
 		{
-			object res = await Navigation.ShowPopupAsync(new CriarConta()
+			await Navigation.PushModalAsync(new CriarConta()
 			{
-				BindingContext = await DataServiceConta.GetContasByCorrentista(correntista.Id)
+				BindingContext = correntista
 			});
-			if (res is null) return;
-			try
-			{
-				Conta c = res as Conta;
 
-				c.Id_Correntista = correntista.Id;
-				c.Saldo = 0;
+			Navigation.RemovePage(this);
 
-				await DataServiceConta.InsertConta(c);
-
-				App.Current.MainPage = new Home()
-				{
-					BindingContext = await DataServiceCorrentista.GetCorrentistaByID(correntista.Id)
-				};
-			}
-			catch (Exception ex)
-			{
-				await DisplayAlert(ex.Message, ex.StackTrace, "ok");
-			}
+			this.contas.Clear();
+			CarregarContas();
 		}
 
-		protected override async void OnAppearing()
+		protected override void OnAppearing()
 		{
 			base.OnAppearing();
 			this.contas.Clear();
 
 			correntista = BindingContext as Correntista;
 
+			CarregarContas();
+		}
+
+		private async void CarregarContas()
+		{
 			try
 			{
 				act_carregando.IsVisible = true;
+				act_carregando.IsRunning = true;
 				List<Conta> contas = await DataServiceConta.GetContasByCorrentista(correntista.Id);
 
 				stack_no_account.IsVisible = contas == null;
 
+				btn_criarConta.IsVisible = contas == null;
+
 				if (contas != null)
 				{
+					btn_criarConta.IsVisible = contas.Count < 2;
+
 					foreach (Conta c in contas)
 					{
 						this.contas.Add(c);
@@ -150,8 +146,8 @@ namespace AppBancoDigital.Views
 			finally
 			{
 				act_carregando.IsVisible = false;
+				act_carregando.IsRunning = false;
 			}
-
 		}
 	}
 }

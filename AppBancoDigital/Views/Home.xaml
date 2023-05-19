@@ -58,7 +58,7 @@
 				</BindableLayout.ItemTemplate>
 			</StackLayout>
 
-            <Button Style="{StaticResource Button1}" HorizontalOptions="Center" Text="Criar Conta" x:Name="btn_criarConta" Clicked="CriarContaClicked"/>
+            <Button Style="{StaticResource Button1}" HorizontalOptions="Center" Text="Criar Conta" x:Name="btn_criarConta" Clicked="CriarContaClicked" IsVisible="False"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
