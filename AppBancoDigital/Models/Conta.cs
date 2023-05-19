@@ -9,10 +9,11 @@ namespace AppBancoDigital.Models
         public int Id { get; set; }
         public int Numero { get; set; }
         public string Tipo { get; set; }
-
         public string Senha { get; set; }
-
         public double Saldo { get; set; }
         public int Id_Correntista { get; set; }
+
+		public string SaldoFormatado => Saldo.ToString("C");
+		public string TipoFormatado => (Tipo == "CORRENTE") ? "Corrente" : "Poupança";
     }
 }
