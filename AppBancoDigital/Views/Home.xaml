@@ -5,14 +5,22 @@
 			 xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
     <ContentPage.Content>
         <StackLayout x:Name="stack_principal" BackgroundColor="#000">
-            <Label HorizontalOptions="Center" Margin="0, 30">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="Olá, " FontFamily="StellaNova" FontSize="20" TextColor="#eee"/>
-                        <Span Text="{Binding Nome}" FontFamily="StellaNova" FontSize="20" TextColor="#eee"/>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
+			<Grid ColumnDefinitions="*, *, *" Margin="0, 30">
+				<Label Grid.Column="0"
+					FontFamily="MaterialIcons" Text="&#xe5d3;" TextColor="#eee" FontSize="20" VerticalOptions="Center" Margin="30, 0, 0, 0"/>
+
+				<Label HorizontalOptions="Center" Grid.Column="1">
+					<Label.FormattedText>
+						<FormattedString>
+							<Span Text="Olá, " FontFamily="OpenSans" FontSize="20" TextColor="#eee"/>
+							<Span Text="{Binding Nome}" FontFamily="OpenSans" FontSize="20" TextColor="#eee"/>
+						</FormattedString>
+					</Label.FormattedText>
+				</Label>
+
+				<Label Grid.Column="2"
+					FontFamily="MaterialIcons" Text="&#xe9ba;" TextColor="#eee" FontSize="20" VerticalOptions="Center" Margin="0, 0, 30, 0" HorizontalTextAlignment="End"/>
+			</Grid>
 
 			<yummy:PancakeView CornerRadius="50, 50, 0, 0" VerticalOptions="FillAndExpand">
 				<StackLayout BackgroundColor="#e9e9e9">
@@ -22,18 +30,6 @@
 						Margin="30, 50, 0, 0" TextColor="#111"/>
 					
 					<ActivityIndicator x:Name="act_carregando" IsVisible="False" Color="#00cc73"/>
-
-					<StackLayout x:Name="stack_no_account"
-								HorizontalOptions="Center" Margin="0, 50"
-								IsVisible="False">
-						<Image x:Name="img_no_account"/>
-
-						<Label Text="Nenhuma conta..."
-							FontSize="25"
-							FontFamily="StellaNova"
-							Margin="30, 0"
-							TextColor="#111"/>
-					</StackLayout>
 
 					<ScrollView Orientation="Horizontal"
 						VerticalScrollBarVisibility="Never"
@@ -66,13 +62,14 @@
 														TextColor="#eee"
 														VerticalTextAlignment="Center"/>
 
-													<Label Text="{Binding Numero}"
-														FontFamily="StellaNova"
-														FontSize="15"
-														TextColor="#eee"
+													<Label
+														FontFamily="MaterialIcons"
+														FontSize="25"
+														Text="&#xe8f5;"
+														TextColor="#ffffff"
 														HorizontalOptions="End"
-														Margin="0, 0, 25, 0"
-														VerticalTextAlignment="Center"/>
+														Margin="0, 0, 10, 0"
+														VerticalOptions="Center"/>
 												</Grid>
 
 												<Label Text="Saldo"

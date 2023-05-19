@@ -20,10 +20,16 @@
     <EmbeddedResource Include="Assets\Fonts\OpenSans.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+
+    <EmbeddedResource Include="Assets\Fonts\MaterialIcons-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+
     <EmbeddedResource Include="Assets\Fonts\StellaNova.otf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Assets\Images\money.png">
+
+	<EmbeddedResource Include="Assets\Images\money.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>

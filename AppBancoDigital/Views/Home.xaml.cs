@@ -27,7 +27,6 @@ namespace AppBancoDigital.Views
 		{
 			InitializeComponent();
 			NavigationPage.SetHasNavigationBar(this, false);
-			img_no_account.Source = ImageSource.FromResource("AppBancoDigital.Assets.Images.money.png");
 			stack_contas.BindingContext = this;
 			BindableLayout.SetItemsSource(stack_contas, contas);
 			contas.CollectionChanged += ContasListUpdate;
@@ -127,14 +126,8 @@ namespace AppBancoDigital.Views
 				act_carregando.IsRunning = true;
 				List<Conta> contas = await DataServiceConta.GetContasByCorrentista(correntista.Id);
 
-				stack_no_account.IsVisible = contas == null;
-
-				btn_criarConta.IsVisible = contas == null;
-
 				if (contas != null)
 				{
-					btn_criarConta.IsVisible = contas.Count < 2;
-
 					foreach (Conta c in contas)
 					{
 						this.contas.Add(c);
