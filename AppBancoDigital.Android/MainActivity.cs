@@ -4,6 +4,8 @@ using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
+using Android.Graphics;
+using Android.Graphics.Drawables;
 using AndroidX.AppCompat;
 using AndroidX.AppCompat.App;
 
@@ -17,7 +19,8 @@ namespace AppBancoDigital.Droid
             base.OnCreate(savedInstanceState);
             AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightNo;
 
-            Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#222222"));
+			Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#000000"));
+			
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());

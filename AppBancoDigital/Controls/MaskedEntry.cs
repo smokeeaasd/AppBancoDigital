@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace AppBancoDigital.Controls
 {
-    public class MaskedEntry : Entry
+	public class MaskedEntry : Entry
     {
         public static readonly BindableProperty MaskProperty =
             BindableProperty.Create(nameof(Mask), typeof(string), typeof(MaskedEntry), "");
@@ -83,5 +83,4 @@ namespace AppBancoDigital.Controls
             }
         }
     }
-
 }

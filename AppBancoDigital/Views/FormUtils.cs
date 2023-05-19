@@ -1,6 +1,13 @@
 ﻿using System.Linq;
 using System;
 
+using Xamarin.Forms;
+using Xamarin.CommunityToolkit;
+using Xamarin.CommunityToolkit.Core;
+using Xamarin.CommunityToolkit.Effects;
+using Xamarin.CommunityToolkit.UI;
+using Xamarin.CommunityToolkit.UI.Views;
+
 namespace AppBancoDigital.Views
 {
     public class FormUtils

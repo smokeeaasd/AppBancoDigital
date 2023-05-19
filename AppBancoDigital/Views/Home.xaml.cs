@@ -21,7 +21,7 @@ namespace AppBancoDigital.Views
 	{
 		ObservableCollection<Conta> contas = new ObservableCollection<Conta>();
 
-		private Correntista correntista;
+		public Correntista correntista { get; set; }
 
 		public Home()
 		{
@@ -106,12 +106,15 @@ namespace AppBancoDigital.Views
 			CarregarContas();
 		}
 
-		protected override void OnAppearing()
+		protected override async void OnAppearing()
 		{
 			base.OnAppearing();
 			this.contas.Clear();
 
-			correntista = BindingContext as Correntista;
+			int id_correntista = (int)BindingContext;
+			
+			correntista = await DataServiceCorrentista.GetCorrentistaByID(id_correntista);
+			stack_principal.BindingContext = correntista;
 
 			CarregarContas();
 		}

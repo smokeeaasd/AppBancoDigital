@@ -17,7 +17,10 @@ namespace AppBancoDigital
 
             InitializeComponent();
 
-            MainPage = new NavigationPage(new Views.Inicial());
+            MainPage = new NavigationPage(new Views.Home()
+			{
+				BindingContext = 11
+			});
         }
 
         protected override void OnStart()

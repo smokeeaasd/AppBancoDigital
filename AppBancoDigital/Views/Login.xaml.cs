@@ -41,7 +41,7 @@ namespace AppBancoDigital.Views
                 
                 await Navigation.PushAsync(new Views.Home()
                 {
-                    BindingContext = await DataServiceCorrentista.GetCorrentistaByID(correntista.Id)
+                    BindingContext = correntista.Id
                 });
 
                 Navigation.RemovePage(this);

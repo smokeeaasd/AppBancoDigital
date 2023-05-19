@@ -1,64 +1,98 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppBancoDigital.Views.Home">
+             x:Class="AppBancoDigital.Views.Home"
+			 xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
     <ContentPage.Content>
-        <StackLayout x:Name="stack_principal" BackgroundColor="#eeeeee">
-            <Label Margin="30, 30, 0, 0">
+        <StackLayout x:Name="stack_principal" BackgroundColor="#000">
+            <Label HorizontalOptions="Center" Margin="0, 30">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Olá, " FontFamily="StellaNova" FontSize="25" TextColor="#111"/>
-                        <Span Text="{Binding Nome}" FontFamily="StellaNova" FontSize="25" TextColor="#111"/>
+                        <Span Text="Olá, " FontFamily="StellaNova" FontSize="20" TextColor="#eee"/>
+                        <Span Text="{Binding Nome}" FontFamily="StellaNova" FontSize="20" TextColor="#eee"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
 
-            <Label Text="Suas Contas"
-                   FontSize="25"
-                   FontFamily="StellaNova"
-                   Margin="30, 20, 0, 0" TextColor="#111"/>
-			
-			<ActivityIndicator x:Name="act_carregando" IsVisible="False" Color="#00cc73"/>
+			<yummy:PancakeView CornerRadius="50, 50, 0, 0" VerticalOptions="FillAndExpand">
+				<StackLayout BackgroundColor="#e9e9e9">
+					<Label Text="Suas Contas"
+						FontSize="25"
+						FontFamily="StellaNova"
+						Margin="30, 50, 0, 0" TextColor="#111"/>
+					
+					<ActivityIndicator x:Name="act_carregando" IsVisible="False" Color="#00cc73"/>
 
-            <StackLayout x:Name="stack_no_account"
-                         HorizontalOptions="Center" Margin="0, 50"
-						 IsVisible="False">
-                <Image x:Name="img_no_account"/>
+					<StackLayout x:Name="stack_no_account"
+								HorizontalOptions="Center" Margin="0, 50"
+								IsVisible="False">
+						<Image x:Name="img_no_account"/>
 
-                <Label Text="Nenhuma conta..."
-                       FontSize="25"
-                       FontFamily="StellaNova"
-                       Margin="30, 0"
-                       TextColor="#111"/>
-            </StackLayout>
+						<Label Text="Nenhuma conta..."
+							FontSize="25"
+							FontFamily="StellaNova"
+							Margin="30, 0"
+							TextColor="#111"/>
+					</StackLayout>
 
-			<StackLayout
-				x:Name="stack_contas"
-				HorizontalOptions="Center">
-				<BindableLayout.ItemTemplate>
-					<DataTemplate>
-						<Frame
-							BackgroundColor="#00cc73"
+					<ScrollView Orientation="Horizontal"
+						VerticalScrollBarVisibility="Never"
+						HorizontalScrollBarVisibility="Never">
+						<StackLayout
+							x:Name="stack_contas"
 							HorizontalOptions="Center"
-							Margin="0, 25, 0, 0"
-							WidthRequest="275"
-							HeightRequest="125"
-							CornerRadius="10">
+							Orientation="Horizontal">
+							<BindableLayout.ItemTemplate>
+								<DataTemplate>
+									<Frame BackgroundColor="#000000"
+										HorizontalOptions="Center"
+										Margin="25, 25, 10, 0"
+										WidthRequest="300"
+										CornerRadius="20"
+										Padding="0">
 
-							<StackLayout>
-								<Grid>
-									<Label Text="{Binding TipoFormatado}" FontFamily="StellaNova" FontSize="20" TextColor="#eee"/>
-									<Label Text="{Binding Numero}" FontFamily="StellaNova" FontSize="20" TextColor="#eee" HorizontalOptions="End"/>
-								</Grid>
+										<Grid ColumnDefinitions="15, *">
 
-								<Label Text="{Binding SaldoFormatado}" FontFamily="StellaNova" FontSize="25" TextColor="#eee"/>
-							</StackLayout>
-						</Frame>
-					</DataTemplate>
-				</BindableLayout.ItemTemplate>
-			</StackLayout>
+											<BoxView Grid.Column="0"
+												BackgroundColor="#db0063"/>
 
-            <Button Style="{StaticResource Button1}" HorizontalOptions="Center" Text="Criar Conta" x:Name="btn_criarConta" Clicked="CriarContaClicked" IsVisible="False"/>
+											<StackLayout Grid.Column="1"
+												Margin="10, 20">
+
+												<Grid Margin="0, 0, 0, 25">
+													<Label Text="{Binding TipoFormatado}"
+														FontFamily="StellaNova"
+														FontSize="20"
+														TextColor="#eee"
+														VerticalTextAlignment="Center"/>
+
+													<Label Text="{Binding Numero}"
+														FontFamily="StellaNova"
+														FontSize="15"
+														TextColor="#eee"
+														HorizontalOptions="End"
+														Margin="0, 0, 25, 0"
+														VerticalTextAlignment="Center"/>
+												</Grid>
+
+												<Label Text="Saldo"
+													FontFamily="OpenSans" 
+													FontSize="15"
+													TextColor="#eee"/>
+
+												<Label Text="{Binding SaldoFormatado}"
+													FontFamily="OpenSans"
+													FontSize="25"
+													TextColor="#eee"/>
+											</StackLayout>
+										</Grid>
+									</Frame>
+								</DataTemplate>
+							</BindableLayout.ItemTemplate>
+						</StackLayout>
+					</ScrollView>
+				</StackLayout>
+			</yummy:PancakeView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
