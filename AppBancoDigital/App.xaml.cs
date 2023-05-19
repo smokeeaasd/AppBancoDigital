@@ -12,6 +12,7 @@ namespace AppBancoDigital
     {
         public App()
         {
+			Device.SetFlags(new string[] { "AppTheme_Experimental" });
             Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
 
             InitializeComponent();
