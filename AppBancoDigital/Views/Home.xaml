@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppBancoDigital.Views.Home">
     <ContentPage.Content>
-        <StackLayout x:Name="stack_principal">
+        <StackLayout x:Name="stack_principal" BackgroundColor="#eeeeee">
             <Label Margin="30, 30, 0, 0">
                 <Label.FormattedText>
                     <FormattedString>
@@ -17,9 +17,12 @@
                    FontSize="25"
                    FontFamily="StellaNova"
                    Margin="30, 20, 0, 0" TextColor="#111"/>
+			
+			<ActivityIndicator x:Name="act_carregando" IsVisible="False" Color="#00cc73"/>
 
             <StackLayout x:Name="stack_no_account"
-                         HorizontalOptions="Center" Margin="0, 50">
+                         HorizontalOptions="Center" Margin="0, 50"
+						 IsVisible="False">
                 <Image x:Name="img_no_account"/>
 
                 <Label Text="Nenhuma conta..."
@@ -29,8 +32,33 @@
                        TextColor="#111"/>
             </StackLayout>
 
-            <Button Style="{StaticResource Button1}" HorizontalOptions="Center" Text="Criar Conta" x:Name="btn_criarConta" Clicked="CriarContaClicked"/>
+			<StackLayout
+				x:Name="stack_contas"
+				HorizontalOptions="Center">
+				<BindableLayout.ItemTemplate>
+					<DataTemplate>
+						<Frame
+							BackgroundColor="#00cc73"
+							HorizontalOptions="Center"
+							Margin="0, 25, 0, 0"
+							WidthRequest="275"
+							HeightRequest="125"
+							CornerRadius="10">
 
+							<StackLayout>
+								<Grid>
+									<Label Text="{Binding TipoFormatado}" FontFamily="StellaNova" FontSize="20" TextColor="#eee"/>
+									<Label Text="{Binding Numero}" FontFamily="StellaNova" FontSize="20" TextColor="#eee" HorizontalOptions="End"/>
+								</Grid>
+
+								<Label Text="{Binding SaldoFormatado}" FontFamily="StellaNova" FontSize="25" TextColor="#eee"/>
+							</StackLayout>
+						</Frame>
+					</DataTemplate>
+				</BindableLayout.ItemTemplate>
+			</StackLayout>
+
+            <Button Style="{StaticResource Button1}" HorizontalOptions="Center" Text="Criar Conta" x:Name="btn_criarConta" Clicked="CriarContaClicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
