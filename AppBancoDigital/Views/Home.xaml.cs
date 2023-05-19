@@ -1,6 +1,8 @@
 ﻿using AppBancoDigital.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,20 +12,38 @@ using Xamarin.Forms.Xaml;
 using AppBancoDigital.Services;
 using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.CommunityToolkit.UI.Views;
+using System.Collections.Specialized;
 
 namespace AppBancoDigital.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Home : ContentPage
-    {
-        private Correntista correntista;
-        public Home()
-        {
-            InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
-            img_no_account.Source = ImageSource.FromResource("AppBancoDigital.Assets.Images.money.png");
-        }
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class Home : ContentPage
+	{
+		ObservableCollection<Conta> contas = new ObservableCollection<Conta>();
 
+		private Correntista correntista;
+
+		public Home()
+		{
+			InitializeComponent();
+			NavigationPage.SetHasNavigationBar(this, false);
+			img_no_account.Source = ImageSource.FromResource("AppBancoDigital.Assets.Images.money.png");
+			stack_contas.BindingContext = this;
+			BindableLayout.SetItemsSource(stack_contas, contas);
+			contas.CollectionChanged += ContasListUpdate;
+		}
+
+		private void ContasListUpdate(object sender, NotifyCollectionChangedEventArgs e)
+		{
+			foreach (Conta c in contas)
+			{
+				string tipo = c.Tipo.Substring(0, 1).ToUpperInvariant() + c.Tipo.Substring(1).ToLowerInvariant();
+
+				contas[contas.IndexOf(c)].Tipo = tipo;
+			}
+		}
+
+		/**
         private Frame MakeAccountCard(Conta c)
         {
             Grid grid = new Grid();
@@ -71,51 +91,67 @@ namespace AppBancoDigital.Views
 
             return frm;
         }
+		*/
 
-        private async void CriarContaClicked(object sender, EventArgs e)
-        {
-            object res = await Navigation.ShowPopupAsync(new CriarConta()
-            {
-                BindingContext = await DataServiceConta.GetContasByCorrentista(correntista.Id)
-            });
+		private async void CriarContaClicked(object sender, EventArgs e)
+		{
+			object res = await Navigation.ShowPopupAsync(new CriarConta()
+			{
+				BindingContext = await DataServiceConta.GetContasByCorrentista(correntista.Id)
+			});
+			if (res is null) return;
+			try
+			{
+				Conta c = res as Conta;
 
-            try
-            {
-                Conta c = res as Conta;
+				c.Id_Correntista = correntista.Id;
+				c.Saldo = 0;
 
-                c.Id_Correntista = correntista.Id;
-                c.Saldo = 0;
+				await DataServiceConta.InsertConta(c);
 
-                await DataServiceConta.InsertConta(c);
+				App.Current.MainPage = new Home()
+				{
+					BindingContext = await DataServiceCorrentista.GetCorrentistaByID(correntista.Id)
+				};
+			}
+			catch (Exception ex)
+			{
+				await DisplayAlert(ex.Message, ex.StackTrace, "ok");
+			}
+		}
 
-                App.Current.MainPage = new Home()
-                {
-                    BindingContext = await DataServiceCorrentista.GetCorrentistaByID(correntista.Id)
-                };
-            } catch (Exception ex)
-            {
-                await DisplayAlert(ex.Message, ex.StackTrace, "ok");
-            }
-        }
+		protected override async void OnAppearing()
+		{
+			base.OnAppearing();
+			this.contas.Clear();
 
-        private void LoadAccountCards(List<Conta> contas)
-        {
-            foreach (Conta conta in contas)
-            {
-                stack_principal.Children.Add(MakeAccountCard(conta));
-            }
-        }
+			correntista = BindingContext as Correntista;
 
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
+			try
+			{
+				act_carregando.IsVisible = true;
+				List<Conta> contas = await DataServiceConta.GetContasByCorrentista(correntista.Id);
 
-            correntista = BindingContext as Correntista;
+				stack_no_account.IsVisible = contas == null;
 
-            List<Conta> contas = await DataServiceConta.GetContasByCorrentista(correntista.Id);
+				if (contas != null)
+				{
+					foreach (Conta c in contas)
+					{
+						this.contas.Add(c);
+					}
+				}
+				act_carregando.IsVisible = false;
+			}
+			catch (Exception ex)
+			{
+				await DisplayAlert(ex.Message, ex.StackTrace, "OK");
+			}
+			finally
+			{
+				act_carregando.IsVisible = false;
+			}
 
-            if (contas != null)
-                LoadAccountCards(contas);
-        }
-    }
+		}
+	}
 }
