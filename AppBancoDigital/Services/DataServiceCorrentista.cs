@@ -1,15 +1,15 @@
 ﻿using AppBancoDigital.Models;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 using AppBancoDigital.Exceptions;
 using Xamarin.Forms;
 
 namespace AppBancoDigital.Services
 {
-    public class DataServiceCorrentista : DataService
+	public class DataServiceCorrentista : DataService
     {
         public static async Task<Correntista> InsertCorrentista(Correntista correntistaModel)
         {

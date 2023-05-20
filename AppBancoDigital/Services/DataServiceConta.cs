@@ -10,6 +10,23 @@ namespace AppBancoDigital.Services
 {
     public class DataServiceConta : DataService
     {
+		public static async Task<Conta> GetContaById(int id)
+        {
+            string response = await GetDataFromService($"/api/conta/by-id?id={id}");
+
+            Result res = JsonConvert.DeserializeObject<Result>(response);
+
+            switch (res.Type)
+            {
+                case 1:
+                    return JsonConvert.DeserializeObject<Conta>(res.Data.ToString());
+                case 2:
+                    return null;
+                default:
+                    throw new Exception();
+            }
+        }
+
         public static async Task<List<Conta>> GetContasByCorrentista(int id_correntista)
         {
             string response = await GetDataFromService($"/api/conta/by-correntista?id={id_correntista}");
