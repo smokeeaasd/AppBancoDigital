@@ -8,6 +8,7 @@ using Android.Graphics;
 using Android.Graphics.Drawables;
 using AndroidX.AppCompat;
 using AndroidX.AppCompat.App;
+using Android.Util;
 
 namespace AppBancoDigital.Droid
 {
@@ -17,14 +18,23 @@ namespace AppBancoDigital.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightNo;
 
+			LogService.Instance.OnLogRequest += LogRecebido;
+
+            AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightNo;
 			Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#000000"));
 			
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
         }
+
+		private void LogRecebido(object sender, EventArgs e)
+		{
+			LogData data = sender as LogData;	
+			Log.Debug(data.Tag, data.Message);
+		}
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
