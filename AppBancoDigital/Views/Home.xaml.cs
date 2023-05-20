@@ -27,6 +27,20 @@ namespace AppBancoDigital.Views
 			InitializeComponent();
 			NavigationPage.SetHasNavigationBar(this, false);
 		}
+		
+		private async void GetTransacoesCorrente(object sender, EventArgs e)
+		{
+			await Navigation.PushModalAsync(new Transacoes() {
+				BindingContext = corrente
+			});
+		}
+
+		private async void GetTransacoesPoupanca(object sender, EventArgs e)
+		{
+			await Navigation.PushModalAsync(new Transacoes() {
+				BindingContext = poupanca
+			});
+		}
 
 		private async void SairClicked(object sender, EventArgs e)
 		{
@@ -82,6 +96,7 @@ namespace AppBancoDigital.Views
 			int id_correntista = (int)BindingContext;
 			
 			correntista = await DataServiceCorrentista.GetCorrentistaByID(id_correntista);
+
 			stack_principal.BindingContext = correntista;
 
 			CarregarContas();
@@ -91,9 +106,6 @@ namespace AppBancoDigital.Views
 		{
 			try
 			{
-				act_carregando.IsVisible = true;
-				act_carregando.IsRunning = true;
-
 				List<Conta> contas = await DataServiceConta.GetContasByCorrentista(correntista.Id);
 
 				if (contas != null)
@@ -112,16 +124,10 @@ namespace AppBancoDigital.Views
 						card_poupanca.IsVisible = true;
 					}
 				}
-				act_carregando.IsVisible = false;
 			}
 			catch (Exception ex)
 			{
 				await DisplayAlert(ex.Message, ex.StackTrace, "OK");
-			}
-			finally
-			{
-				act_carregando.IsVisible = false;
-				act_carregando.IsRunning = false;
 			}
 		}
 	}
