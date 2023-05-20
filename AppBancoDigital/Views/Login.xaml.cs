@@ -44,6 +44,8 @@ namespace AppBancoDigital.Views
                     BindingContext = correntista.Id
                 });
 
+				App.Current.Properties.Add("id_correntista", correntista.Id);
+
                 Navigation.RemovePage(this);
             }
 

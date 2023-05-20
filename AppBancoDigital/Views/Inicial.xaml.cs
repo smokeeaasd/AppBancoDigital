@@ -7,32 +7,27 @@ using System.Collections.Specialized;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using Xamarin.CommunityToolkit.UI.Views;
+using Xamarin.CommunityToolkit.Extensions;
 namespace AppBancoDigital.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Inicial : CarouselPage
+    public partial class Inicial : ContentPage
     {
         public Inicial()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-
-            Button btnProximo = page_welcome.FindByName<Button>("btn_proximo");
-
-            btnProximo.Clicked += BtnProximo_Clicked;
         }
 
-        private void BtnProximo_Clicked(object sender, EventArgs e)
-        {
-            ContentPage currentPage = CurrentPage;
-            int nextPage = Children.IndexOf(currentPage) + 1;
+		private async void LoginClicked(object sender, EventArgs e)
+		{
+			await Navigation.PushAsync(new Views.Login());
+		}
 
-            Children.Add(new Entrar());
-
-            CurrentPage = Children[nextPage];
-
-            Children.Remove(page_welcome);
-        }
+		private async void RegistrarClicked(object sender, EventArgs e)
+		{
+			await Navigation.PushAsync(new Views.Registrar());
+		}
     }
 }

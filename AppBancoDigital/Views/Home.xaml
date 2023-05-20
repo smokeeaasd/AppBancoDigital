@@ -9,7 +9,7 @@
 				<Label Grid.Column="0"
 					FontFamily="MaterialIcons" Text="&#xe5d3;" TextColor="#eee" FontSize="20" VerticalOptions="Center" Margin="30, 0, 0, 0"/>
 
-				<Label HorizontalOptions="Center" Grid.Column="1">
+				<Label HorizontalOptions="Center" Grid.Column="1" VerticalOptions="Center">
 					<Label.FormattedText>
 						<FormattedString>
 							<Span Text="Olá, " FontFamily="OpenSans" FontSize="20" TextColor="#eee"/>
@@ -18,8 +18,8 @@
 					</Label.FormattedText>
 				</Label>
 
-				<Label Grid.Column="2"
-					FontFamily="MaterialIcons" Text="&#xe9ba;" TextColor="#eee" FontSize="20" VerticalOptions="Center" Margin="0, 0, 30, 0" HorizontalTextAlignment="End"/>
+				<Button Grid.Column="2" Clicked="SairClicked"
+					FontFamily="MaterialIcons" Text="&#xe9ba;" TextColor="#eee" FontSize="20" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="50" Margin="0, 0, 30, 0" BackgroundColor="Transparent"/>
 			</Grid>
 
 			<yummy:PancakeView CornerRadius="50, 50, 0, 0" VerticalOptions="FillAndExpand">
@@ -31,61 +31,40 @@
 					
 					<ActivityIndicator x:Name="act_carregando" IsVisible="False" Color="#00cc73"/>
 
-					<ScrollView Orientation="Horizontal"
-						VerticalScrollBarVisibility="Never"
-						HorizontalScrollBarVisibility="Never">
-						<StackLayout
-							x:Name="stack_contas"
-							HorizontalOptions="Center"
-							Orientation="Horizontal">
-							<BindableLayout.ItemTemplate>
-								<DataTemplate>
-									<Frame BackgroundColor="#000000"
-										HorizontalOptions="Center"
-										Margin="25, 25, 10, 0"
-										WidthRequest="300"
-										CornerRadius="20"
-										Padding="0">
-
-										<Grid ColumnDefinitions="15, *">
-
-											<BoxView Grid.Column="0"
-												BackgroundColor="#db0063"/>
-
-											<StackLayout Grid.Column="1"
-												Margin="10, 20">
-
-												<Grid Margin="0, 0, 0, 25">
-													<Label Text="{Binding TipoFormatado}"
-														FontFamily="StellaNova"
-														FontSize="20"
-														TextColor="#eee"
-														VerticalTextAlignment="Center"/>
-
-													<Label
-														FontFamily="MaterialIcons"
-														FontSize="25"
-														Text="&#xe8f5;"
-														TextColor="#ffffff"
-														HorizontalOptions="End"
-														Margin="0, 0, 10, 0"
-														VerticalOptions="Center"/>
-												</Grid>
-
-												<Label Text="Saldo"
-													FontFamily="OpenSans" 
-													FontSize="15"
-													TextColor="#eee"/>
-
-												<Label Text="{Binding SaldoFormatado}"
-													FontFamily="OpenSans"
-													FontSize="25"
-													TextColor="#eee"/>
-											</StackLayout>
+					<ScrollView Orientation="Horizontal" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never">
+						<StackLayout x:Name="stack_contas" HorizontalOptions="Center" Orientation="Horizontal">
+						
+							<Frame x:Name="card_corrente" IsVisible="false" BackgroundColor="#000000" HorizontalOptions="Center" Margin="25, 25, 10, 0" WidthRequest="300" CornerRadius="20" Padding="0">
+								<Grid ColumnDefinitions="15, *">
+									<BoxView Grid.Column="0" BackgroundColor="#db0063"/>
+									<StackLayout Grid.Column="1" Margin="10, 20">
+										<Grid Margin="0, 0, 0, 25">
+											<Label Text="Corrente" FontFamily="OpenSans" FontSize="20" TextColor="#eee" VerticalTextAlignment="Center"/>
+											<Button Clicked="HandleSaldoCorrenteVisibility" WidthRequest="50" BackgroundColor="Transparent" Text="&#xe8f5;" FontFamily="MaterialIcons" FontSize="25" TextColor="#ffffff" HorizontalOptions="End" Margin="0, 0, 10, 0" VerticalOptions="Center"/>
 										</Grid>
-									</Frame>
-								</DataTemplate>
-							</BindableLayout.ItemTemplate>
+										<Label Text="Saldo" FontFamily="OpenSans"  FontSize="15" TextColor="#eee"/>
+										<Label x:Name="saldo_corrente" Text="{Binding SaldoFormatado}" FontFamily="OpenSans" FontSize="25" TextColor="#eee"/>
+									</StackLayout>
+								</Grid>
+							</Frame>
+
+							<Frame x:Name="card_poupanca" IsVisible="false" BackgroundColor="#000000" HorizontalOptions="Center" Margin="25, 25, 10, 0" WidthRequest="300" CornerRadius="20" Padding="0">
+								<Grid ColumnDefinitions="15, *">
+									<BoxView Grid.Column="0" BackgroundColor="#4161e0"/>
+									<StackLayout Grid.Column="1" Margin="10, 20">
+										<Grid Margin="0, 0, 0, 25">
+											<Label Text="Poupança" FontFamily="OpenSans" FontSize="20" TextColor="#eee" VerticalTextAlignment="Center"/>
+											<Button Clicked="HandleSaldoPoupancaVisibility" WidthRequest="50" BackgroundColor="Transparent" Text="&#xe8f5;" FontFamily="MaterialIcons" FontSize="25" TextColor="#ffffff" HorizontalOptions="End" Margin="0, 0, 10, 0" VerticalOptions="Center"/>
+										</Grid>
+										<Label Text="Saldo" FontFamily="OpenSans"  FontSize="15" TextColor="#eee"/>
+										<Label x:Name="saldo_poupanca" Text="{Binding SaldoFormatado}" FontFamily="OpenSans" FontSize="25" TextColor="#eee"/>
+									</StackLayout>
+								</Grid>
+							</Frame>
+
+							<Grid ColumnDefinitions="*, *">
+							</Grid>
+
 						</StackLayout>
 					</ScrollView>
 				</StackLayout>

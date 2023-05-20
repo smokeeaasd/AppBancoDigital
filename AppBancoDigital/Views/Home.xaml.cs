@@ -1,18 +1,14 @@
 ﻿using AppBancoDigital.Models;
 using System;
 using System.Collections.Generic;
-using System.Collections;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using AppBancoDigital.Services;
-using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.CommunityToolkit.UI.Views;
-using System.Collections.Specialized;
+using Xamarin.CommunityToolkit.Extensions;
+using System.Threading.Tasks;
 
 namespace AppBancoDigital.Views
 {
@@ -23,74 +19,47 @@ namespace AppBancoDigital.Views
 
 		public Correntista correntista { get; set; }
 
+		public Conta corrente { get; set; }
+		public Conta poupanca { get; set; }
+
 		public Home()
 		{
 			InitializeComponent();
 			NavigationPage.SetHasNavigationBar(this, false);
-			stack_contas.BindingContext = this;
-			BindableLayout.SetItemsSource(stack_contas, contas);
-			contas.CollectionChanged += ContasListUpdate;
 		}
 
-		private void ContasListUpdate(object sender, NotifyCollectionChangedEventArgs e)
+		private async void SairClicked(object sender, EventArgs e)
 		{
-			foreach (Conta c in contas)
-			{
-				string tipo = c.Tipo.Substring(0, 1).ToUpperInvariant() + c.Tipo.Substring(1).ToLowerInvariant();
+			Popup popupSaindo = PageUtils.MakeConfirmationPopup("Sair da conta", "Você deseja encerrar a sessão atual?", "Sim", "Não");
 
-				contas[contas.IndexOf(c)].Tipo = tipo;
+			object result = await Navigation.ShowPopupAsync(popupSaindo);
+
+			if (result is bool res)
+			{
+				if (res)
+				{
+					App.Current.Properties.Remove("id_correntista");
+					Application.Current.MainPage = new NavigationPage(new Inicial());
+				}
 			}
 		}
 
-		/**
-        private Frame MakeAccountCard(Conta c)
-        {
-            Grid grid = new Grid();
+		bool hideCorrente = false;
+		private void HandleSaldoCorrenteVisibility(object sender, EventArgs e)
+		{
+			hideCorrente = !hideCorrente;
+			((Button)sender).Text = (hideCorrente) ? "\uE8f4" : "\uE8f5";
+			saldo_corrente.Text = (hideCorrente) ? "R$ *****" : corrente.SaldoFormatado;
+		}
 
-            grid.Children.Add(new Label()
-            {
-                Text = c.Tipo,
-                FontSize = 20,
-                FontFamily = "StellaNova",
-                TextColor = Color.FromHex("#eee")
-            }, 0, 0);
+		bool hidePoupanca = false;
+		private void HandleSaldoPoupancaVisibility(object sender, EventArgs e)
+		{
+			hidePoupanca = !hidePoupanca;
 
-            grid.Children.Add(new Label()
-            {
-                Text = c.Numero.ToString(),
-                FontSize = 20,
-                FontFamily = "StellaNova",
-                TextColor = Color.FromHex("#eee"),
-                HorizontalOptions = LayoutOptions.End
-            }, 1, 0);
-
-            Frame frm = new Frame()
-            {
-                BackgroundColor = Color.FromHex("#00cc73"),
-                HorizontalOptions = LayoutOptions.Center,
-                Margin = new Thickness(0, 25, 0, 0),
-                WidthRequest = 275,
-                HeightRequest = 125,
-                CornerRadius = 10,
-                Content = new StackLayout()
-                {
-                    Children =
-                    {
-                        grid,
-                        new Label() {
-                            Text = c.Saldo.ToString("C"),
-                            FontSize = 25,
-                            FontFamily = "StellaNova",
-                            TextColor = Color.FromHex("#eee"),
-                            Margin = new Thickness(0, 10)
-                        }
-                    }
-                }
-            };
-
-            return frm;
-        }
-		*/
+			((Button)sender).Text = (hidePoupanca) ? "\uE8f4" : "\uE8f5";
+			saldo_poupanca.Text = (hidePoupanca) ? "R$ *****" : poupanca.SaldoFormatado;
+		}
 
 		private async void CriarContaClicked(object sender, EventArgs e)
 		{
@@ -124,13 +93,23 @@ namespace AppBancoDigital.Views
 			{
 				act_carregando.IsVisible = true;
 				act_carregando.IsRunning = true;
+
 				List<Conta> contas = await DataServiceConta.GetContasByCorrentista(correntista.Id);
 
 				if (contas != null)
 				{
-					foreach (Conta c in contas)
+					corrente = contas.Find((c) => c.Tipo == "CORRENTE");
+					poupanca = contas.Find((c) => c.Tipo == "POUPANCA");
+
+					if (corrente != null)
 					{
-						this.contas.Add(c);
+						card_corrente.BindingContext = corrente;
+						card_corrente.IsVisible = true;
+					}
+					if (poupanca != null)
+					{
+						card_poupanca.BindingContext = poupanca;
+						card_poupanca.IsVisible = true;
 					}
 				}
 				act_carregando.IsVisible = false;
