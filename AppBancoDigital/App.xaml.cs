@@ -16,11 +16,15 @@ namespace AppBancoDigital
             Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
 
             InitializeComponent();
-
-            MainPage = new NavigationPage(new Views.Home()
+			if (App.Current.Properties.ContainsKey("id_correntista"))
 			{
-				BindingContext = 11
-			});
+            	MainPage = new NavigationPage(new Views.Home()
+				{
+					BindingContext = App.Current.Properties["id_correntista"] as int?
+				});
+			} else {
+				MainPage = new NavigationPage(new Views.Inicial());
+			}
         }
 
         protected override void OnStart()
