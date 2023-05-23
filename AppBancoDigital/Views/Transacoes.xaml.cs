@@ -23,6 +23,16 @@ namespace AppBancoDigital.Views
 			InitializeComponent();
 			NavigationPage.SetHasNavigationBar(this, false);
 			BindableLayout.SetItemsSource(stack_transacoes, transacoes);
+
+			NotificationData notificationData = new NotificationData(
+				channelId: "transacoes",
+				title: "Transações",
+				message: "https://github.com/smokeeaasd",
+				channelName: "Transações",
+				description: "Notificação recebida quando o usuário recebe uma transação."
+			);
+
+			AppServices.SendNotificationRequest(notificationData);
 		}
 
 		protected override async void OnAppearing()
