@@ -4,18 +4,8 @@
 			x:Class="AppBancoDigital.Views.Home"
 			xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
 	<ContentPage.Content>
-		<ScrollView>
-			<StackLayout x:Name="stack_transacoes">
-				<BindableLayout.ItemTemplate>
-					<DataTemplate>
-						<Frame BackgroundColor="#000000" Padding="0" CornerRadius="20" HorizontalOptions="Center" Margin="25, 25, 25, 0">
-							<StackLayout>
-							</StackLayout>
-						</Frame>
-					</DataTemplate>
-				</BindableLayout.ItemTemplate>
-			</StackLayout>
-			<StackLayout x:Name="stack_principal" BackgroundColor="#000">
+        <ScrollView>
+            <StackLayout x:Name="stack_principal" BackgroundColor="#000">
 				<Grid ColumnDefinitions="*, *, *" Margin="0, 30">
 					<Label Grid.Column="0"
 						FontFamily="MaterialIcons" Text="&#xe5d3;" TextColor="#eee" FontSize="20" VerticalOptions="Center" Margin="30, 0, 0, 0"/>
@@ -30,7 +20,7 @@
 					</Label>
 
 					<Button Grid.Column="2" Clicked="SairClicked"
-						FontFamily="MaterialIcons" Text="&#xe9ba;" TextColor="#eee" FontSize="20" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="50" Margin="0, 0, 30, 0" BackgroundColor="Transparent"/>
+						FontFamily="MaterialIcons" Text="&#xe9ba;" TextColor="#ffffff" FontSize="20" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="50" Margin="0, 0, 30, 0" BackgroundColor="Transparent"/>
 				</Grid>
 
 				<yummy:PancakeView CornerRadius="50, 50, 0, 0" VerticalOptions="FillAndExpand">

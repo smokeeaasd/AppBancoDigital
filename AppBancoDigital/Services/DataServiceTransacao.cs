@@ -78,7 +78,7 @@ namespace AppBancoDigital.Services
 
 		public static async Task<List<TransacaoCompleta>> GetTransacoesCompletas(int id_conta)
 		{
-			List<Transacao> transacoes_raw = await DataServiceTransacao.OrdenarTransacoes(id_conta);
+			List<Transacao> transacoes_raw = await OrdenarTransacoes(id_conta);
 
 			List<TransacaoCompleta> transacoes = new List<TransacaoCompleta>();
 
@@ -97,7 +97,48 @@ namespace AppBancoDigital.Services
 
 				return transacoes;
 			}
-			else return null;
+
+			return null;
+		}
+
+		public static async Task<Transacao> GetUltimaByDestinatario(int id_destinatario)
+		{
+			string response = await GetDataFromService($"/api/transacao/ultima/by-destinatario?id_destinatario={id_destinatario}");
+
+            Result res = JsonConvert.DeserializeObject<Result>(response);
+
+            switch (res.Type)
+            {
+                case 1:
+                    return JsonConvert.DeserializeObject<Transacao>(res.Data.ToString());
+                case 2:
+                    return null;
+                default:
+                    throw new Exception();
+            }
+        }
+
+		public static async Task<TransacaoCompleta> GetUltimaCompletaByDestinatario(int id_destinatario)
+		{
+			Transacao transacao_raw = await GetUltimaByDestinatario(id_destinatario);
+
+			TransacaoCompleta transacao;
+
+			if (transacao_raw != null)
+			{
+				transacao = new TransacaoCompleta()
+				{
+					Id = transacao_raw.Id,
+					Data_Transacao = transacao_raw.Data_Transacao,
+					Destinatario = await DataServiceConta.GetContaById(transacao_raw.Id_Destinatario),
+					Remetente = await DataServiceConta.GetContaById(transacao_raw.Id_Remetente),
+					Valor = transacao_raw.Valor
+                };
+
+				return transacao;
+			}
+
+			return null;
 		}
 	}
 }

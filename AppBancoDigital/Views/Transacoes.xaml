@@ -8,8 +8,8 @@
 		<ScrollView>
 			<StackLayout>
 				<StackLayout Margin="30, 25">
-					<Label Text="Binding Tipo" FontFamily="OpenSans" TextColor="#ffffff" FontSize="17.5"/> 
-					<Label Text="Binding Saldo" FontFamily="StellaNova" TextColor="#ffffff" FontSize="25"/>
+					<Label Text="{Binding TipoFormatado}" FontFamily="StellaNova" TextColor="#ffffff" FontSize="17.5"/> 
+					<Label Text="{Binding SaldoFormatado}" FontFamily="OpenSans" TextColor="#ffffff" FontSize="25"/>
 				</StackLayout>
 				<yummy:PancakeView CornerRadius="50, 50, 0, 0" VerticalOptions="FillAndExpand">
 					<StackLayout BackgroundColor="#ffffff">
