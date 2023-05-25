@@ -41,15 +41,22 @@ namespace AppBancoDigital
             return contas;
         }
 
-        private async void LogTransacoes(int id_conta)
+        private async void LogTransacoes(int id_correntista)
         {
-            Transacao tc = await DataServiceTransacao.GetUltimaByDestinatario(id_conta);
-        
-            AppServices.SendLogRequest("BancoDigital", JsonConvert.SerializeObject(tc));
-            AppServices.SendLogRequest("BancoDigital", JsonConvert.SerializeObject(tc));
+            List<Conta> contas = await GetContas(id_correntista);
 
-            await Task.Delay(1000);
-            LogTransacoes(id_conta);
+
+            foreach (Conta c in contas)
+            {
+                Transacao tc = await DataServiceTransacao.GetUltimaByDestinatario(c.Id);
+
+                AppServices.SendLogRequest("BancoDigital", JsonConvert.SerializeObject(tc));
+                AppServices.SendLogRequest("BancoDigital", JsonConvert.SerializeObject(tc));
+
+                await Task.Delay(1000);
+            }
+
+            LogTransacoes(id_correntista);
         }
 
         protected override void OnStart()
