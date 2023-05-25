@@ -1,5 +1,6 @@
 ﻿using AppBancoDigital.Models;
 using AppBancoDigital.Services;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -13,6 +14,7 @@ namespace AppBancoDigital
 {
     public partial class App : Application
     {
+        public event EventHandler OnTransacaoRecebida;
         public App()
         {
 			Device.SetFlags(new string[] { "AppTheme_Experimental" });
@@ -21,16 +23,7 @@ namespace AppBancoDigital
             InitializeComponent();
 			if (App.Current.Properties.ContainsKey("id_correntista"))
 			{
-                int idCorrentista = (int)App.Current.Properties["id_correntista"];
-                try
-                {
-                    ListenForTransacao(idCorrentista);
-                }
-                catch (Exception ex)
-                {
-                    AppServices.SendLogRequest("AppBanco", ex.Message);
-                    AppServices.SendLogRequest("AppBanco", ex.StackTrace);
-                }
+                int id_correntista = int.Parse(App.Current.Properties["id_correntista"].ToString());
 
             	MainPage = new NavigationPage(new Views.Home()
 				{
@@ -41,38 +34,22 @@ namespace AppBancoDigital
 			}
         }
 
-        private async Task<List<Conta>> GetContas(int id_conta)
+        private async Task<List<Conta>> GetContas(int id_correntista)
         {
-            List<Conta> contas = await DataServiceConta.GetContasByCorrentista(id_conta);
+            List<Conta> contas = await DataServiceConta.GetContasByCorrentista(id_correntista);
 
             return contas;
         }
-        private async void ListenForTransacao(int id_destinatario)
+
+        private async void LogTransacoes(int id_conta)
         {
-            TransacaoCompleta ultima = await DataServiceTransacao.GetUltimaCompletaByDestinatario(id_destinatario);
+            Transacao tc = await DataServiceTransacao.GetUltimaByDestinatario(id_conta);
+        
+            AppServices.SendLogRequest("BancoDigital", JsonConvert.SerializeObject(tc));
+            AppServices.SendLogRequest("BancoDigital", JsonConvert.SerializeObject(tc));
 
-            Correntista remetente;
-
-            if (ultima != null)
-            {
-                await Task.Delay(500);
-                ListenForTransacao(id_destinatario);
-            }
-            else
-            {
-                remetente = await DataServiceCorrentista.GetCorrentistaByID(ultima.Remetente.Id_Correntista);
-                NotificationData notificacao = new NotificationData(
-                    channelId: "transacoes",
-                    title: "Nova transação",
-                    message: $"{remetente.Nome.ToUpperInvariant()} te enviou {ultima.ValorFormatado} por {ultima.Remetente.TipoFormatado.ToUpperInvariant()}",
-                    channelName: "ch_transacoes",
-                    description: "Enviada quando você recebe uma transação"
-                );
-
-                AppServices.SendNotificationRequest(notificacao);
-
-                return;
-            }
+            await Task.Delay(1000);
+            LogTransacoes(id_conta);
         }
 
         protected override void OnStart()
