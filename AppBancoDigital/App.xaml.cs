@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
 
 namespace AppBancoDigital
 {
@@ -27,8 +28,11 @@ namespace AppBancoDigital
 			{
                 int id_correntista = int.Parse(App.Current.Properties["id_correntista"].ToString());
 
-				OnTransacaoRecebida += EnviarNotificacaoTransacao;
-				ListenForTransacoes(id_correntista);
+				if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+				{
+					OnTransacaoRecebida += EnviarNotificacaoTransacao;
+					ListenForTransacoes(id_correntista);
+				}
 
             	MainPage = new NavigationPage(new Views.Home()
 				{
