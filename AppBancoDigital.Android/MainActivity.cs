@@ -12,6 +12,8 @@ using Android.Widget;
 using AndroidX.AppCompat;
 using AndroidX.AppCompat.App;
 using Android.Util;
+using Xamarin.Forms;
+using AppBancoDigital;
 
 namespace AppBancoDigital.Droid
 {

@@ -17,17 +17,16 @@
             </Style>
 
             <Style TargetType="Label" x:Key="FormLabel">
-                <Setter Property="FontFamily" Value="StellaNova"/>
+                <Setter Property="FontFamily" Value="OpenSans"/>
                 <Setter Property="FontSize" Value="18"/>
             </Style>
 
             <Style TargetType="Button" x:Key="Button1">
                 <Setter Property="TextColor" Value="#eeeeee"/>
-                <Setter Property="BackgroundColor" Value="#00cc73"/>
-                <Setter Property="FontFamily" Value="StellaNova"/>
+                <Setter Property="BackgroundColor" Value="#db0063"/>
+                <Setter Property="FontFamily" Value="OpenSans"/>
                 <Setter Property="TextTransform" Value="None"/>
                 <Setter Property="FontSize" Value="18"/>
-                <Setter Property="WidthRequest" Value="200"/>
             </Style>
 
             <Style TargetType="Button" x:Key="OutlineButton1">
