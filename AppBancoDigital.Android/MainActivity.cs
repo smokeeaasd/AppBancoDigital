@@ -31,7 +31,8 @@ namespace AppBancoDigital.Droid
 			Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#000000"));
 
 			Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-			global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Forms.Init(this, savedInstanceState);
+
 			LoadApplication(new App());
 		}
 

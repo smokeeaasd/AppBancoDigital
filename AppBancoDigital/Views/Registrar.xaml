@@ -40,26 +40,33 @@
                            Text="CPF"
                            TextColor="#eeeeee"
                            Margin="25, 20, 25, 0"/>
-
-                        <controls:MaskedEntry Style="{StaticResource Entry1}"
-                           Margin="25, 0, 25, 0"
-                           PlaceholderColor="#eeeeee"
-                           TextColor="#ffffff"
-                           Keyboard="Numeric"
-                           Placeholder="111.111.111-11"
-                           Mask="XXX.XXX.XXX-XX"
-                           x:Name="txt_cpf"/>
+                        
+                        <Frame Padding="0" Margin="25, 0, 25, 0" CornerRadius="5" BackgroundColor="#0f0f0f">
+                            <controls:MaskedEntry Style="{StaticResource Entry1}"
+                                Margin="10, 0, 0, 0"
+                                PlaceholderColor="#aaaaaa"
+                                CornerRadius="5"
+                                TextColor="#ffffff"
+                                Keyboard="Numeric"
+                                Placeholder="111.111.111-11"
+                                Mask="XXX.XXX.XXX-XX"
+                                x:Name="txt_cpf"
+                                BorderColor="Transparent"
+                                BackgroundColor="#0f0f0f"/>
+                        </Frame>
 
                         <Label Style="{StaticResource FormLabel}"
                            Text="Data de Nascimento"
                            TextColor="#ffffff"
                            Margin="25, 20, 25, 0"/>
 
-                        <DatePicker
-                           TextColor="#ffffff"
+                        <controls:CustomDatePicker
+                           TextColor="#aaaaaa"
+                           FontFamily="StellaNova"
+                           PlaceholderColor="#aaaaaa"
+                           BorderColor="Transparent"
                            Margin="25, 0, 25, 0"
                            x:Name="dtpck_data_nasc"
-                           FontFamily="OpenSans"
                            FontSize="16"/>
 
                         <Label Style="{StaticResource FormLabel}"

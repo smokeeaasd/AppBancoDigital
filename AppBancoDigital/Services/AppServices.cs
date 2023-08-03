@@ -2,7 +2,7 @@ using System;
 
 namespace AppBancoDigital
 {
-	public class AppServices
+	public sealed class AppServices
 	{
 		public static event EventHandler OnLogRequest;
 		public static event EventHandler OnNotificationRequest;
