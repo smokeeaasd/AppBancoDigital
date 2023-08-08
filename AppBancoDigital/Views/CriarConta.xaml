@@ -1,38 +1,44 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppBancoDigital.Views.CriarConta">
-    <StackLayout x:Name="popup_contas">
-        <Label FontFamily="StellaNova" TextColor="#111" Text="Selecione o tipo de conta" Margin="0, 20, 0, 10" HorizontalOptions="Center" FontSize="20"/>
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="AppBancoDigital.Views.CriarConta">
+	<StackLayout x:Name="popup_contas">
+		<Label FontFamily="StellaNova" TextColor="#111" Text="Selecione o tipo de conta"
+			Margin="0, 20, 0, 10" HorizontalOptions="Center" FontSize="20" />
 
-        <Button Style="{StaticResource Button1}" Margin="0, 10" HorizontalOptions="Center" Text="Poupança" x:Name="btn_poupanca" Clicked="btn_poupanca_Clicked"/>
-        <Button Style="{StaticResource Button1}" Margin="0, 10" HorizontalOptions="Center" Text="Corrente" x:Name="btn_corrente" Clicked="btn_corrente_Clicked"/>
+		<Button Style="{StaticResource Button1}" Margin="0, 10" HorizontalOptions="Center"
+			Text="Poupança" x:Name="btn_poupanca" Clicked="btn_poupanca_Clicked" />
+		<Button Style="{StaticResource Button1}" Margin="0, 10" HorizontalOptions="Center"
+			Text="Corrente" x:Name="btn_corrente" Clicked="btn_corrente_Clicked" />
 
-        <Label Style="{StaticResource FormLabel}"
-                   Text="Senha"
-                   TextColor="#222"
-                   Margin="25, 20, 25, 0"/>
+		<Label Style="{StaticResource FormLabel}"
+			Text="Senha"
+			TextColor="#222"
+			Margin="25, 20, 25, 0" />
 
-        <Entry Style="{StaticResource Entry1}"
-               Margin="25, 0, 25, 0"
-               PlaceholderColor="#999"
-               IsPassword="True"
-               x:Name="txt_senha"/>
+		<Entry Style="{StaticResource Entry1}"
+			Margin="25, 0, 25, 0"
+			PlaceholderColor="#999"
+			IsPassword="True"
+			x:Name="txt_senha" />
 
-        <Label Style="{StaticResource FormLabel}"
-                   Text="Confirmar Senha"
-                   TextColor="#222"
-                   Margin="25, 20, 25, 0"/>
+		<Label Style="{StaticResource FormLabel}"
+			Text="Confirmar Senha"
+			TextColor="#222"
+			Margin="25, 20, 25, 0" />
 
-        <Entry Style="{StaticResource Entry1}"
-               Margin="25, 0, 25, 0"
-               PlaceholderColor="#999"
-               IsPassword="True"
-               x:Name="txt_confirmar_senha"/>
+		<Entry Style="{StaticResource Entry1}"
+			Margin="25, 0, 25, 0"
+			PlaceholderColor="#999"
+			IsPassword="True"
+			x:Name="txt_confirmar_senha" />
 
-        <Button Style="{StaticResource Button1}" Margin="0, 10" HorizontalOptions="Center" Text="Criar conta" x:Name="btn_criar_conta" Clicked="btn_criar_conta_Clicked"/>
-        
-        <Label FontFamily="StellaNova" TextColor="#bf0026" Margin="0, -10, 0, 0" x:Name="senha_diferente" IsVisible="false" Text="As senhas não coincidem"/>
-        <Label FontFamily="StellaNova" TextColor="#bf0026" Margin="0, -10, 0, 0" x:Name="nenhum_selecionado" IsVisible="false" Text="Selecione o tipo de conta"/>
-    </StackLayout>
+		<Button Style="{StaticResource Button1}" Margin="0, 10" HorizontalOptions="Center"
+			Text="Criar conta" x:Name="btn_criar_conta" Clicked="btn_criar_conta_Clicked" />
+
+		<Label FontFamily="StellaNova" TextColor="#bf0026" Margin="0, -10, 0, 0"
+			x:Name="senha_diferente" IsVisible="false" Text="As senhas não coincidem" />
+		<Label FontFamily="StellaNova" TextColor="#bf0026" Margin="0, -10, 0, 0"
+			x:Name="nenhum_selecionado" IsVisible="false" Text="Selecione o tipo de conta" />
+	</StackLayout>
 </ContentPage>

@@ -1,16 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              x:Class="AppBancoDigital.Views.Inicial"
-			  BackgroundColor="#000000">
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="AppBancoDigital.Views.Inicial"
+	BackgroundColor="#000000">
 	<ContentPage.Content>
 		<StackLayout HorizontalOptions="FillAndExpand">
 			<StackLayout HorizontalOptions="Center">
 				<Label FontFamily="StellaNova" Text="code bank" TextColor="#ffffff" FontSize="40"
-					HorizontalOptions="Center" Margin="0, 100, 0, 0"/>
-				<Label x:Name="lbl_animada" HorizontalOptions="End" FontFamily="OpenSans" FontSize="15" TextColor="#ffffff" Text="~~ by @nkwwzn."/>
+					HorizontalOptions="Center" Margin="0, 100, 0, 0" />
+				<Label x:Name="lbl_animada" HorizontalOptions="End" FontFamily="OpenSans"
+					FontSize="15" TextColor="#ffffff" Text="~~ by @nkwwzn." />
 			</StackLayout>
-			
+
 			<StackLayout VerticalOptions="EndAndExpand">
 				<Button Clicked="RegistrarClicked"
 					Text="Criar conta"
@@ -20,7 +21,7 @@
 					Margin="15, 0"
 					BackgroundColor="#db0063"
 					TextColor="#ffffff"
-					CornerRadius="10"/>
+					CornerRadius="10" />
 
 				<Button Clicked="LoginClicked"
 					Text="Já tenho uma conta."
@@ -30,7 +31,7 @@
 					Margin="0, 10"
 					BackgroundColor="Transparent"
 					TextColor="#ffffff"
-					HorizontalOptions="Center"/>
+					HorizontalOptions="Center" />
 			</StackLayout>
 		</StackLayout>
 	</ContentPage.Content>

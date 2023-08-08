@@ -13,6 +13,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
+using Newtonsoft.Json;
+
 namespace AppBancoDigital.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -93,7 +95,23 @@ namespace AppBancoDigital.Views
 
             try
             {
-                Correntista c = await DataServiceCorrentista.InsertCorrentista(correntista);
+                Correntista cor = await DataServiceCorrentista.InsertCorrentista(correntista);
+
+                Conta con = await DataServiceConta.InsertConta(new Conta()
+                {
+                    Id_Correntista = cor.Id,
+                    Saldo = 0,
+                    Tipo = "POUPANCA",
+                    Senha = txt_senha.Text,
+                });
+
+                Conta cor2 = await DataServiceConta.InsertConta(new Conta()
+                {
+                    Id_Correntista = cor.Id,
+                    Saldo = 0,
+                    Tipo = "CORRENTE",
+                    Senha = txt_senha.Text,
+                });
             }
             catch (APIException ex)
             {
@@ -103,6 +121,10 @@ namespace AppBancoDigital.Views
                         await DisplayAlert("Problema ao criar conta.", "A conta já existe", "OK");
                         return;
                 }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert(ex.Message, ex.StackTrace, "OK");
             }
 
             await DisplayAlert("Conta criada!", $"Seja bem-vindo(a), {txt_nome.Text}", "OK");

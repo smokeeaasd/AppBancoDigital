@@ -1,53 +1,53 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppBancoDigital.Views.Login"
-             xmlns:controls="clr-namespace:AppBancoDigital.Controls"
-             BackgroundColor="#eee">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label FontFamily="StellaNova"
-                   FontSize="30"
-                   Text="Olá, que bom te ver novamente!"
-                   TextColor="#222"
-                   Margin="25, 75, 25, 0"/>
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="AppBancoDigital.Views.Login"
+	xmlns:controls="clr-namespace:AppBancoDigital.Controls"
+	BackgroundColor="#eee">
+	<ContentPage.Content>
+		<StackLayout>
+			<Label FontFamily="StellaNova"
+				FontSize="30"
+				Text="Olá, que bom te ver novamente!"
+				TextColor="#222"
+				Margin="25, 75, 25, 0" />
 
-            <Label Style="{StaticResource FormLabel}"
-                   Text="CPF"
-                   TextColor="#222"
-                   Margin="25, 20, 25, 0"/>
+			<Label Style="{StaticResource FormLabel}"
+				Text="CPF"
+				TextColor="#222"
+				Margin="25, 20, 25, 0" />
 
-            <controls:MaskedEntry Style="{StaticResource Entry1}"
-                   Margin="25, 0, 25, 0"
-                   PlaceholderColor="#999"
-                   Keyboard="Numeric"
-                   Placeholder="111.111.111-11"
-                   Mask="XXX.XXX.XXX-XX"
-                   x:Name="txt_cpf"/>
+			<controls:MaskedEntry Style="{StaticResource Entry1}"
+				Margin="25, 0, 25, 0"
+				PlaceholderColor="#999"
+				Keyboard="Numeric"
+				Placeholder="111.111.111-11"
+				Mask="XXX.XXX.XXX-XX"
+				x:Name="txt_cpf" />
 
-            <Label Style="{StaticResource FormLabel}"
-                   Text="Senha"
-                   TextColor="#222"
-                   Margin="25, 20, 25, 0"/>
+			<Label Style="{StaticResource FormLabel}"
+				Text="Senha"
+				TextColor="#222"
+				Margin="25, 20, 25, 0" />
 
-            <Entry Style="{StaticResource Entry1}"
-                   Margin="25, 0, 25, 0"
-                   PlaceholderColor="#999"
-                   IsPassword="True"
-                   x:Name="txt_senha"/>
+			<Entry Style="{StaticResource Entry1}"
+				Margin="25, 0, 25, 0"
+				PlaceholderColor="#999"
+				IsPassword="True"
+				x:Name="txt_senha" />
 
-            <Label x:Name="lbl_incorrect" Text="Verifique as credenciais."
-                   HorizontalTextAlignment="Center"
-                   TextColor="#bf0026"
-                   FontFamily="StellaNova"
-                   Margin="0, 0, 0, -25"
-                   IsVisible="false"/>
+			<Label x:Name="lbl_incorrect" Text="Verifique as credenciais."
+				HorizontalTextAlignment="Center"
+				TextColor="#bf0026"
+				FontFamily="StellaNova"
+				Margin="0, 0, 0, -25"
+				IsVisible="false" />
 
-            <Button Style="{StaticResource Button1}"
-                    HorizontalOptions="Center"
-                    Text="Entrar"
-                    Margin="0, 35, 0, 0"
-                    Clicked="LogarClicked"/>
-        </StackLayout>
-    </ContentPage.Content>
+			<Button Style="{StaticResource Button1}"
+				HorizontalOptions="Center"
+				Text="Entrar"
+				Margin="0, 35, 0, 0"
+				Clicked="LogarClicked" />
+		</StackLayout>
+	</ContentPage.Content>
 </ContentPage>

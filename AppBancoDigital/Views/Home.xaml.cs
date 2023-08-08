@@ -98,7 +98,7 @@ namespace AppBancoDigital.Views
 			correntista = await DataServiceCorrentista.GetCorrentistaByID(id_correntista);
 
 			stack_principal.BindingContext = correntista;
-
+			txt_nome.Text = correntista.Nome.Split(' ')[0];
 			CarregarContas();
 		}
 
