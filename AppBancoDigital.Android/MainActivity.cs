@@ -48,11 +48,13 @@ namespace AppBancoDigital.Droid
 			{
 				NotificationData data = sender as NotificationData;
 
-				NotificationChannel channel = new NotificationChannel(data.ChannelId, data.ChannelName, NotificationImportance.Default);
-				channel.Description = data.Description;
-				channel.Importance = NotificationImportance.Default;
+				NotificationChannel channel = new NotificationChannel(data.ChannelId, data.ChannelName, NotificationImportance.Default)
+				{
+					Description = data.Description,
+					Importance = NotificationImportance.Default
+				};
 
-				var nmr = GetSystemService(Context.NotificationService) as NotificationManager;
+				var nmr = GetSystemService(NotificationService) as NotificationManager;
 				nmr.CreateNotificationChannel(channel);
 
 				var builder = new NotificationCompat.Builder(this, data.ChannelId);
