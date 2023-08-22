@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace AppBancoDigital.Views
@@ -38,13 +39,13 @@ namespace AppBancoDigital.Views
                     lbl_incorrect.IsVisible = true;
                     return;
                 }
-                
+
+                Application.Current.Properties.Add("id_correntista", correntista.Id);                
+
                 await Navigation.PushAsync(new Views.Home()
                 {
                     BindingContext = correntista.Id
                 });
-
-				App.Current.Properties.Add("id_correntista", correntista.Id);
 
                 Navigation.RemovePage(this);
             }

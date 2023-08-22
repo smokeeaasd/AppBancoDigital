@@ -15,6 +15,8 @@ namespace AppBancoDigital
 {
     public partial class App : Application
     {
+		private static Stack<Page> PageStack = new Stack<Page>();
+
 		private delegate void TransacaoDelegate(Correntista remetente, Correntista destinatario, TransacaoCompleta transacao);
         private event TransacaoDelegate OnTransacaoRecebida;
         public App()
@@ -23,8 +25,11 @@ namespace AppBancoDigital
             Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
 
             InitializeComponent();
-
-			if (App.Current.Properties.ContainsKey("id_correntista"))
+			foreach (var prop in Application.Current.Properties)
+			{
+				AppServices.SendLogRequest("AppProperty", prop.Key);
+			}
+			if (Current.Properties.ContainsKey("id_correntista"))
 			{
                 int id_correntista = int.Parse(App.Current.Properties["id_correntista"].ToString());
 

@@ -61,7 +61,7 @@
 							IsVisible="false" />
 
                         <Button Style="{StaticResource Button1}"
-							Text="Criar conta"
+							Text="Entrar"
 							Margin="25, 35, 25, 0"
 							CornerRadius="10"
 							Clicked="LogarClicked" />

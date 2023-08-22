@@ -9,6 +9,7 @@ using AppBancoDigital.Services;
 using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.CommunityToolkit.Extensions;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace AppBancoDigital.Views
 {
@@ -26,7 +27,7 @@ namespace AppBancoDigital.Views
 		{
 			InitializeComponent();
 			NavigationPage.SetHasNavigationBar(this, false);
-		}
+        }
 		
 		private async void GetTransacoesCorrente(object sender, EventArgs e)
 		{
