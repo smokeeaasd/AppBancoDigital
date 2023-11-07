@@ -115,10 +115,15 @@
 							</ScrollView>
                         </StackLayout>
                         <StackLayout Margin="25">
-                            <Grid RowDefinitions="75, 50" ColumnDefinitions="75, 75, 75, 75">
-                                <StackLayout>
-                                    <Button FontFamily="MaterialIcons" Text="&#xef63;" TextColor="#ffffff" FontSize="32" BackgroundColor="#db0063" BorderWidth="2" CornerRadius="10"/>
+                            <Grid RowDefinitions="75, 50" ColumnDefinitions="*, *, *">
+                                <StackLayout Grid.Row="0" Grid.Column="0">
+                                    <Button FontFamily="MaterialIcons" Text="&#xef63;" TextColor="#ffffff" FontSize="32" BackgroundColor="#db0063" BorderWidth="2" CornerRadius="10" Margin="10, 0"/>
                                     <Label Text="Pix" HorizontalTextAlignment="Center" FontFamily="StellaNova" TextColor="#000" FontSize="16"/>
+                                </StackLayout>
+
+                                <StackLayout Grid.Row="0" Grid.Column="1">
+                                    <Button FontFamily="MaterialIcons" Text="&#xef63;" TextColor="#ffffff" FontSize="32" BackgroundColor="#db0063" BorderWidth="2" CornerRadius="10" Margin="10, 0"/>
+                                    <Label Text="Fazer transação" HorizontalTextAlignment="Center" FontFamily="StellaNova" TextColor="#000" FontSize="16"/>
                                 </StackLayout>
                             </Grid>
                         </StackLayout>

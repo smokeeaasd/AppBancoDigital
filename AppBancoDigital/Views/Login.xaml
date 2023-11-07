@@ -25,7 +25,7 @@
 							Margin="25, 0, 25, 0" />
 
                         <Frame Padding="0" Margin="25, 0, 25, 0" CornerRadius="5"
-							BackgroundColor="Transparent" BorderColor="#fff">
+							BackgroundColor="Transparent" BorderColor="#444">
                             <controls:MaskedEntry Style="{StaticResource Entry1}"
 								Margin="10, 0, 0, 0"
 								PlaceholderColor="#aaaaaa"
@@ -44,7 +44,7 @@
 							Margin="25, 20, 25, 0" />
 
                         <Frame Padding="0" Margin="25, 0, 25, 0" CornerRadius="5"
-							BackgroundColor="Transparent" BorderColor="#fff">
+							BackgroundColor="Transparent" BorderColor="#444">
                             <controls:CustomEntry Style="{StaticResource Entry1}"
 								Margin="10, 0, 0, 0"
 								PlaceholderColor="#eeeeee"

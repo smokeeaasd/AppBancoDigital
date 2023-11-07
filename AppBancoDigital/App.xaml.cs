@@ -25,10 +25,7 @@ namespace AppBancoDigital
             Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
 
             InitializeComponent();
-			foreach (var prop in Application.Current.Properties)
-			{
-				AppServices.SendLogRequest("AppProperty", prop.Key);
-			}
+
 			if (Current.Properties.ContainsKey("id_correntista"))
 			{
                 int id_correntista = int.Parse(App.Current.Properties["id_correntista"].ToString());
