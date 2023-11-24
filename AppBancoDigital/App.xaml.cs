@@ -26,9 +26,9 @@ namespace AppBancoDigital
 
             InitializeComponent();
 
-			if (Current.Properties.ContainsKey("id_correntista"))
+			if (Preferences.ContainsKey("id_correntista"))
 			{
-                int id_correntista = int.Parse(App.Current.Properties["id_correntista"].ToString());
+                int id_correntista = Preferences.Get("id_correntista", 0);
 
 				if (Connectivity.NetworkAccess == NetworkAccess.Internet)
 				{
@@ -36,9 +36,9 @@ namespace AppBancoDigital
 					ListenForTransacoes(id_correntista);
 				}
 
-            	MainPage = new NavigationPage(new Views.Home()
+				MainPage = new NavigationPage(new Views.Home()
 				{
-					BindingContext = App.Current.Properties["id_correntista"] as int?
+					BindingContext = id_correntista
 				});
 			}
 			else
@@ -49,6 +49,7 @@ namespace AppBancoDigital
 
 		private async void ListenForTransacoes(int id_correntista)
 		{
+			if (!Preferences.ContainsKey("id_correntista")) return;
 			List<Conta> contas = await DataServiceConta.GetContasByCorrentista(id_correntista);
 
 			if (contas != null)

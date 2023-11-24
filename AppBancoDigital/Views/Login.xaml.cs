@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
 
 namespace AppBancoDigital.Views
 {
@@ -40,7 +41,7 @@ namespace AppBancoDigital.Views
                     return;
                 }
 
-                Application.Current.Properties.Add("id_correntista", correntista.Id);                
+                Preferences.Set("id_correntista", correntista.Id);
 
                 await Navigation.PushAsync(new Views.Home()
                 {

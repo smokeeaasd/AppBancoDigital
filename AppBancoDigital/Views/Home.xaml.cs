@@ -10,6 +10,8 @@ using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.CommunityToolkit.Extensions;
 using System.Threading.Tasks;
 using System.Linq;
+using Xamarin.Essentials;
+using Xamarin.Forms.Internals;
 
 namespace AppBancoDigital.Views
 {
@@ -27,6 +29,12 @@ namespace AppBancoDigital.Views
 		{
 			InitializeComponent();
 			NavigationPage.SetHasNavigationBar(this, false);
+
+            var existingPages = Navigation.NavigationStack.ToList();
+            foreach (var page in existingPages)
+            {
+                Navigation.RemovePage(page);
+            }
         }
 		
 		private async void GetTransacoesCorrente(object sender, EventArgs e)
@@ -53,8 +61,8 @@ namespace AppBancoDigital.Views
 			{
 				if (res)
 				{
-					App.Current.Properties.Remove("id_correntista");
-					Application.Current.MainPage = new NavigationPage(new Inicial());
+					Preferences.Remove("id_correntista");
+                    Application.Current.MainPage = new NavigationPage(new Inicial());
 				}
 			}
 		}
